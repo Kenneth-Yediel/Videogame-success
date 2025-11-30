@@ -1,7 +1,6 @@
 from tkinter import *
 from PIL import Image, ImageTk
-
-# This are the descriptions for the games
+# These are the descriptions for the games
 descriptions = {
     "Dragon Age: Inquisition": "A massive fantasy RPG where you lead the Inquisition\nand seal the Breach across Thedas.",
     "Middle-earth: Shadow of Mordor": "A combat-focused open-world adventure set in Middle-earth\nwith the iconic Nemesis system.",
@@ -34,33 +33,27 @@ descriptions = {
     "The Legend of Zelda: Tears of the Kingdom": "A sequel expanding the world of Hyrule\nwith sky islands, new abilities, and deep creativity.",
     "Alan Wake 2": "A psychological survival horror story\nmixing dual narratives, mystery, and atmosphere."
 }
-
 # Other slide with the game stuff
 def open_game_scene(image_path, game_title):
     scene = Toplevel(root)
     scene.title(game_title)
     scene.geometry("1500x1000")
     scene.configure(bg="#555555")
-
-    # This is a return button to go back to the main menu
+# This is a return button to go back to the main menu
     return_button = Button(scene, text="Return to Main Menu", font=("Arial", 14), command=open_start_screen)
     return_button.pack(pady=10)
-
-    # Loads the image
+# Loads the image
     original = Image.open(image_path)
     resized = original.copy()
     resized.thumbnail((650, 450))
     img = ImageTk.PhotoImage(resized)
-
-    # Image on the left
+# Image on the left
     img_label = Label(scene, image=img, bg="#555555")
     img_label.image = img
     img_label.pack(side=LEFT, padx=20, pady=20)
-
-    # This thing get's the spesific game description. if no description  presents dev text
+# This thing gets the specific game description. if no description  presents dev text
     game_desc = descriptions.get(game_title, "No description or not a game selected\n or something went wrong.")
-
-    # Description text placed on the right
+# Description text placed on the right
     info = Label(
         scene,
         text=f"{game_title}\n\n{game_desc}",
@@ -70,20 +63,16 @@ def open_game_scene(image_path, game_title):
         fg="white"
     )
     info.pack(side=LEFT, padx=20)
-
-
 # This opens the main game selection screen
 def open_videogames_screen():
     for widget in root.winfo_children():
         widget.destroy()
-
-    # Background image added
+# Background image added
     bg = PhotoImage(file="video_gamesbackground.png")
     background_label = Label(root, image=bg)
     background_label.image = bg
     background_label.place(x=0, y=0, relwidth=1, relheight=1)
-
-    # The setting button on the top left
+# The setting button on the top left
     settings_button = Menubutton(root, text="Settings", relief=RAISED)
     settings_button.menu = Menu(settings_button, tearoff=0)
     settings_button["menu"] = settings_button.menu
@@ -94,22 +83,17 @@ def open_videogames_screen():
     settings_button.menu.add_separator()
     settings_button.menu.add_command(label="Exit", command=root.quit)
     settings_button.place(x=10, y=10)
-
-    # This is a return button to go back to the main menu
+# This is a return button to go back to the main menu
     return_button = Button(root, text="Return to Main Menu", font=("Arial", 14), command=open_start_screen)
     return_button.pack(pady=10)
-
-    # Big text / title
+# Big text / title
     title_label = Label(root, text="GAMES", font=("Arial", 32), bg="#555555", fg="white")
     title_label.pack(pady=20)
-
-    # Scroll container
+# Scroll container
     scroll_container = Frame(root, bg="#555555")
     scroll_container.pack()
-
     canvas = Canvas(scroll_container, width=1000, height=600, bg="#555555", highlightthickness=0)
     canvas.pack(side=LEFT)
-
     scroll_slider = Scale(
         scroll_container,
         from_=0,
@@ -120,16 +104,12 @@ def open_videogames_screen():
         length=600
     )
     scroll_slider.pack(side=RIGHT, padx=10)
-
     button_frame = Frame(canvas, bg="#555555")
     canvas.create_window((0, 0), window=button_frame, anchor="nw")
-
     def update_scroll(pos):
         canvas.yview_moveto(int(pos) / 1000)
-
     scroll_slider.config(command=update_scroll)
-
-    # List of games
+# List of games
     games = [
         ("Dragon_Age.jpg", "Dragon Age: Inquisition"),
         ("Middle-earth.jpg", "Middle-earth: Shadow of Mordor"),
@@ -162,13 +142,11 @@ def open_videogames_screen():
         ("The Legend of Zelda Tears.jpg", "The Legend of Zelda: Tears of the Kingdom"),
         ("Alan Wake 2.jpeg", "Alan Wake 2")
     ]
-
-    # Control of the games presented
+# Control of the games presented
     columns = 5
     row = 0
     col = 0
-
-    # Big buttons for games
+# Big buttons for games
     for img_path, title in games:
         try:
             original = Image.open(img_path)
@@ -177,7 +155,6 @@ def open_videogames_screen():
         except:
             placeholder = Image.new("RGB", (150,150), color="gray")
             button_img = ImageTk.PhotoImage(placeholder)
-
         btn = Button(
             button_frame,
             image=button_img,
@@ -188,29 +165,23 @@ def open_videogames_screen():
         )
         btn.image = button_img
         btn.grid(row=row, column=col, padx=20, pady=20)
-
         col += 1
         if col >= columns:
             col = 0
             row += 1
-
-    # Update scroll region
+# Update scroll region
     button_frame.update_idletasks()
     canvas.config(scrollregion=canvas.bbox("all"))
-
-
 # This is the starting area (the first screen)
 def open_start_screen():
     for widget in root.winfo_children():
         widget.destroy()
-
-    # Background image added
+# Background image added
     bg = PhotoImage(file="YES.png")
     background_label = Label(root, image=bg)
     background_label.image = bg
     background_label.place(x=0, y=0, relwidth=1, relheight=1)
-
-    # The setting button on the top left
+# The setting button on the top left
     settings_button = Menubutton(root, text="Settings", relief=RAISED)
     settings_button.menu = Menu(settings_button, tearoff=0)
     settings_button["menu"] = settings_button.menu
@@ -221,16 +192,13 @@ def open_start_screen():
     settings_button.menu.add_separator()
     settings_button.menu.add_command(label="Exit", command=root.quit)
     settings_button.place(x=10, y=10)
-
-    # Big text / title
+# Big text / title
     start_title = Label(root, text="Videogame success", font=("Arial", 40), bg="#555555", fg="white")
     start_title.pack(pady=80)
-
-    # The 3 starting buttons
+# The 3 starting buttons
     start_frame = Frame(root, bg="#555555")
     start_frame.pack(pady=20)
-
-    # First button: Videogames
+# First button: Videogames
     btn_games = Button(
         start_frame,
         text="Videogames",
@@ -239,8 +207,7 @@ def open_start_screen():
         command=open_videogames_screen
     )
     btn_games.pack(pady=10)
-
-    # Second button: videogame predictor
+# Second button: videogame predictor
     btn_predictor = Button(
         start_frame,
         text="Videogame Predictor",
@@ -249,8 +216,7 @@ def open_start_screen():
         # Coming soon
     )
     btn_predictor.pack(pady=10)
-
-    # The third button: exit
+# The third button: exit
     btn_exit = Button(
         start_frame,
         text="Exit",
@@ -259,15 +225,11 @@ def open_start_screen():
         command=root.quit
     )
     btn_exit.pack(pady=10)
-
-
 # The main scene
 root = Tk()
 root.title("Game Selector")
 root.geometry("1500x1000")
 root.configure(bg="#555555")
-
 # Open the start screen first
 open_start_screen()
-
 root.mainloop()
