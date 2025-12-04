@@ -1,60 +1,91 @@
-Name,Release date,System,Copies sold,Ratings,Company,Major_Company,Genre,Revenue,GOTY_Status
-Resident Evil 4,1/11/2005,"GameCube, PS2, Wii, PC, Xbox 360, PS3, PS4, Xbox One, Switch","13,600,000",94.4,Capcom,Capcom,Survival Horror,"$328,000,000",Winner
-God of War,3/22/2005,PS2,"5,220,000",92.8,Santa Monica Studio,Sony,Action,"$130,000,000",Nominee
-Shadow of the Colossus,10/18/2005,PS2,"1,380,000",90.6,Team Ico,Sony,Action-Adventure,"$27,000,000",Nominee
-The Elder Scrolls IV: Oblivion,3/20/2006,"PC, Xbox 360, PS3","9,500,000",93.2,Bethesda Game Studios,Microsoft,RPG,"$475,000,000",Winner
-Gears of War,11/7/2006,"Xbox 360, PC, Xbox One","6,000,000",93.1,Epic Games,Microsoft,Shooter,"$300,000,000",Nominee
-The Legend of Zelda: Twilight Princess,11/19/2006,"GameCube, Wii, Wii U","8,850,000",94.8,Nintendo EPD,Nintendo,Action-Adventure,"$265,000,000",Nominee
-BioShock,8/21/2007,"PC, Xbox 360, PS3, iOS","5,860,000",95.3,2K Boston,Take-Two Interactive,Shooter,"$234,000,000",Winner
-Call of Duty 4: Modern Warfare,11/5/2007,"PC, Xbox 360, PS3, Wii","15,700,000",93.7,Infinity Ward,Activision Blizzard,Shooter,"$942,000,000",Nominee
-Super Mario Galaxy,11/1/2007,Wii,"12,810,000",96.4,Nintendo EPD,Nintendo,Platformer,"$640,000,000",Nominee
-Portal,10/10/2007,"PC, Xbox 360, PS3","4,000,000",89.5,Valve,Valve,Puzzle,"$60,000,000",Nominee
-Fallout 3,10/28/2008,"PC, Xbox 360, PS3","12,400,000",92.6,Bethesda Game Studios,Microsoft,RPG,"$620,000,000",Winner
-Grand Theft Auto IV,4/29/2008,"PS3, Xbox 360, PC","25,000,000",97.2,Rockstar Games,Take-Two Interactive,Action,"$1,750,000,000",Nominee
-LittleBigPlanet,10/27/2008,PS3,"8,000,000",94.8,Media Molecule,Sony,Platformer,"$240,000,000",Nominee
-Uncharted 2: Among Thieves,10/13/2009,PS3,"8,520,000",95.3,Naughty Dog,Sony,Action-Adventure,"$340,000,000",Winner
-Batman: Arkham Asylum,8/25/2009,"PC, PS3, Xbox 360","13,200,000",90.8,Rocksteady Studios,Warner Bros.,Action,"$660,000,000",Nominee
-Assassin's Creed II,11/17/2009,"PC, PS3, Xbox 360","12,500,000",90.6,Ubisoft Montreal,Ubisoft,Action-Adventure,"$625,000,000",Nominee
-Red Dead Redemption,5/18/2010,"PS3, Xbox 360","23,000,000",94.8,Rockstar Games,Take-Two Interactive,Action,"$1,150,000,000",Winner
-Mass Effect 2,1/26/2010,"PC, Xbox 360, PS3","7,430,000",95.3,BioWare,Electronic Arts,RPG,"$371,000,000",Nominee
-Super Mario Galaxy 2,5/23/2010,Wii,"8,240,000",96.4,Nintendo EPD,Nintendo,Platformer,"$412,000,000",Nominee
-The Elder Scrolls V: Skyrim,11/11/2011,"PC, PS3, Xbox 360, PS4, Xbox One, Switch","60,000,000",95.3,Bethesda Game Studios,Microsoft,RPG,"$3,000,000,000",Winner
-The Legend of Zelda: Skyward Sword,11/18/2011,Wii,"6,520,000",92.6,Nintendo EPD,Nintendo,Action-Adventure,"$326,000,000",Nominee
-Batman: Arkham City,10/18/2011,"PC, PS3, Xbox 360, Wii U","12,500,000",95.3,Rocksteady Studios,Warner Bros.,Action,"$750,000,000",Nominee
-Portal 2,4/18/2011,"PC, PS3, Xbox 360, Switch","8,000,000",94.8,Valve,Valve,Puzzle,"$320,000,000",Nominee
-The Walking Dead: The Game,4/24/2012,"PC, PS3, Xbox 360, iOS, PS Vita, PS4, Xbox One, Switch","8,500,000",91.7,Telltale Games,Skybound Games,Adventure,"$85,000,000",Winner
-Journey,3/13/2012,"PS3, PS4, PC","7,800,000",91.7,Thatgamecompany,Annapurna Interactive,Adventure,"$78,000,000",Nominee
-Mass Effect 3,3/6/2012,"PC, PS3, Xbox 360, Wii U","7,000,000",92.6,BioWare,Electronic Arts,RPG,"$420,000,000",Nominee
-The Last of Us,6/14/2013,PS3,"20,000,000",94.8,Naughty Dog,Sony,Action-Adventure,"$600,000,000",Winner
-Grand Theft Auto V,9/17/2013,"PS3, Xbox 360, PS4, Xbox One, PC","185,000,000",96.4,Rockstar Games,Take-Two Interactive,Action,"$7,400,000,000",Nominee
-BioShock Infinite,3/26/2013,"PC, PS3, Xbox 360, PS4, Xbox One","11,000,000",93.7,Irrational Games,Take-Two Interactive,Shooter,"$550,000,000",Nominee
-Dragon Age: Inquisition,11/18/2014,"PC, PS3, PS4, Xbox 360, Xbox One","6,000,000",89.2,BioWare,Electronic Arts,RPG,"$200,000,000",Winner
-Middle-earth: Shadow of Mordor,9/30/2014,"PC, PS3, PS4, Xbox 360, Xbox One","4,600,000",85.8,Monolith Productions,Warner Bros.,Action,"$120,000,000",Nominee
-Bayonetta 2,9/20/2014,"Wii U, Switch","1,040,000",91.7,Platinum Games,Independent,Action,"$25,000,000",Nominee
-The Witcher 3: Wild Hunt,5/19/2015,"PC, PS4, Xbox One, Switch","50,000,000",93.3,CD Projekt Red,Independent,RPG,"$450,000,000",Winner
-Bloodborne,3/24/2015,PS4,"2,000,000",92.1,FromSoftware,Bandai Namco,Action,"$80,000,000",Nominee
-Fallout 4,11/10/2015,"PC, PS4, Xbox One","15,000,000",88.4,Bethesda Game Studios,Microsoft,RPG,"$750,000,000",Nominee
-Overwatch,5/24/2016,"PC, PS4, Xbox One, Switch","50,000,000",91.5,Blizzard Entertainment,Activision Blizzard,Shooter,"$1,000,000,000",Winner
-Uncharted 4: A Thief's End,5/10/2016,PS4,"16,000,000",93.8,Naughty Dog,Sony,Adventure,"$300,000,000",Nominee
-Doom,5/13/2016,"PC, PS4, Xbox One, Switch","4,000,000",87.9,id Software,Microsoft,Shooter,"$150,000,000",Nominee
-The Legend of Zelda: Breath of the Wild,3/3/2017,"Switch, Wii U","31,150,000",97.2,Nintendo EPD,Nintendo,Adventure,"$900,000,000",Winner
-Horizon Zero Dawn,2/28/2017,"PS4, PC","24,300,000",89.7,Guerrilla Games,Sony,Action,"$450,000,000",Nominee
-Persona 5,4/4/2017,PS4,"9,000,000",93.6,Atlus,Sega,RPG,"$180,000,000",Nominee
-God of War,4/20/2018,PS4,"23,000,000",94.7,Santa Monica Studio,Sony,Action,"$500,000,000",Winner
-Red Dead Redemption 2,10/26/2018,"PS4, Xbox One, PC","61,000,000",97.1,Rockstar Games,Take-Two Interactive,Action,"$6,200,000,000",Nominee
-Marvel's Spider-Man,9/7/2018,"PS4, PS5, PC","33,000,000",87.9,Insomniac Games,Sony,Action,"$1,000,000,000",Nominee
-Sekiro: Shadows Die Twice,3/22/2019,"PC, PS4, Xbox One","10,000,000",91.4,FromSoftware,Bandai Namco,Action,"$300,000,000",Winner
-Death Stranding,11/8/2019,"PS4, PC, Mac","5,000,000",86.3,Kojima Productions,Independent,Action,"$150,000,000",Nominee
-Control,8/27/2019,"PC, PS4, Xbox One, PS5, Xbox Series X/S","3,000,000",85.2,Remedy Entertainment,Independent,Action,"$60,000,000",Nominee
-The Last of Us Part II,6/19/2020,PS4,"10,000,000",93.8,Naughty Dog,Sony,Action,"$300,000,000",Winner
-Ghost of Tsushima,7/17/2020,"PS4, PS5","9,730,000",83.6,Sucker Punch Productions,Sony,Action,"$250,000,000",Nominee
-Hades,9/17/2020,"PC, Switch, PS4, PS5, Xbox One","1,000,000",93.5,Supergiant Games,Independent,Roguelike,"$20,000,000",Nominee
-It Takes Two,3/26/2021,"PC, PS4, PS5, Xbox One, Xbox Series X/S","10,000,000",89.7,Hazelight Studios,Electronic Arts,Adventure,"$150,000,000",Winner
-Ratchet & Clank: Rift Apart,6/11/2021,PS5,"2,200,000",88.9,Insomniac Games,Sony,Platformer,"$88,000,000",Nominee
-Resident Evil Village,5/7/2021,"PC, PS4, PS5, Xbox One, Xbox Series X/S","10,800,000",84.8,Capcom,Capcom,Survival Horror,"$350,000,000",Nominee
-Elden Ring,2/25/2022,"PC, Xbox One, Xbox Series X/S, PS4, PS5","13,400,000",96.8,Bandai Namco,Bandai Namco,Action,"$477,000,000",Winner
-God of War Ragnarok,11/9/2022,"PS5, PC","11,000,000",94.5,Santa Monica Studio,Sony,Action-Adventure,"$235,000,000",Nominee
-Horizon Forbidden West,2/18/2022,"PS4, PS5","530,454",88.7,Guerrilla Games,Sony,Adventure,"$104,100,000",Nominee
-Baldur's Gate 3,8/3/2023,"PC, PS5, Xbox Series X/S","22,600,000",96.4,Larian Studios,Independent,RPG,"$657,000,000",Winner
-The Legend of Zelda: Tears of the Kingdom,5/12/2023,Switch,"20,610,000",96.1,Nintendo EPD,Nintendo,Adventure,"$900,000,000",Nominee
-Alan Wake 2,10/27/2023,"PC, PS5, Xbox Series X/S","1,300,000",89.8,Remedy Entertainment,Independent,Survival Horror,"$45,000,000",Nominee
+Name,Release date,System,Copies sold,Ratings,Company,Major_Company,Genre,Revenue,GOTY_Status,Narrative_Quality,Innovation,Art_Direction
+Resident Evil 4,1/11/2005,"GameCube, PS2, Wii, PC, Xbox 360, PS3, PS4, Xbox One, Switch","13,600,000",94.4,Capcom,Capcom,Survival Horror,"$328,000,000",Winner,7,8,8
+God of War,3/22/2005,PS2,"5,220,000",92.8,Santa Monica Studio,Sony,Action,"$130,000,000",Nominee,7,7,7
+Shadow of the Colossus,10/18/2005,PS2,"1,380,000",90.6,Team Ico,Sony,Action-Adventure,"$27,000,000",Nominee,6,9,9
+Guitar Hero,11/8/2005,PS2,"4,000,000",91.2,Harmonix,Activision Blizzard,Music,"$160,000,000",Non-Nominee,2,10,6
+F.E.A.R.,10/17/2005,PC,"2,500,000",88.5,Monolith Productions,Warner Bros.,Shooter,"$50,000,000",Non-Nominee,5,7,8
+Battlefield 2,6/21/2005,PC,"4,500,000",90.3,DICE,Electronic Arts,Shooter,"$135,000,000",Non-Nominee,4,8,7
+The Elder Scrolls IV: Oblivion,3/20/2006,"PC, Xbox 360, PS3","9,500,000",93.2,Bethesda Game Studios,Microsoft,RPG,"$475,000,000",Winner,8,8,8
+Gears of War,11/7/2006,"Xbox 360, PC, Xbox One","6,000,000",93.1,Epic Games,Microsoft,Shooter,"$300,000,000",Nominee,6,8,9
+The Legend of Zelda: Twilight Princess,11/19/2006,"GameCube, Wii, Wii U","8,850,000",94.8,Nintendo EPD,Nintendo,Action-Adventure,"$265,000,000",Nominee,7,7,9
+Wii Sports,11/19/2006,Wii,"82,900,000",76.5,Nintendo,Nintendo,Sports,"$2,000,000,000",Non-Nominee,1,9,4
+Tom Clancy's Rainbow Six: Vegas,11/22/2006,"Xbox 360, PS3, PC","3,000,000",88.9,Ubisoft Montreal,Ubisoft,Tactical Shooter,"$120,000,000",Non-Nominee,4,6,7
+Company of Heroes,9/13/2006,PC,"2,000,000",93.4,Relic Entertainment,THQ,RTS,"$60,000,000",Non-Nominee,5,8,8
+BioShock,8/21/2007,"PC, Xbox 360, PS3, iOS","5,860,000",95.3,2K Boston,Take-Two Interactive,Shooter,"$234,000,000",Winner,8,10,10
+Call of Duty 4: Modern Warfare,11/5/2007,"PC, Xbox 360, PS3, Wii","15,700,000",93.7,Infinity Ward,Activision Blizzard,Shooter,"$942,000,000",Nominee,4,9,9
+Super Mario Galaxy,11/1/2007,Wii,"12,810,000",96.4,Nintendo EPD,Nintendo,Platformer,"$640,000,000",Nominee,3,9,10
+Portal,10/10/2007,"PC, Xbox 360, PS3","4,000,000",89.5,Valve,Valve,Puzzle,"$60,000,000",Nominee,3,9,9
+Halo 3,9/25/2007,"Xbox 360, PC","14,500,000",94.5,Bungie,Microsoft,Shooter,"$435,000,000",Non-Nominee,4,7,9
+Assassin's Creed,11/13/2007,"PS3, Xbox 360, PC","13,000,000",81.2,Ubisoft Montreal,Ubisoft,Action-Adventure,"$390,000,000",Non-Nominee,5,8,8
+Mass Effect,11/20/2007,"Xbox 360, PC, PS3","5,000,000",91.4,BioWare,Electronic Arts,RPG,"$200,000,000",Non-Nominee,9,7,9
+Fallout 3,10/28/2008,"PC, Xbox 360, PS3","12,400,000",92.6,Bethesda Game Studios,Microsoft,RPG,"$620,000,000",Winner,6,10,8
+Grand Theft Auto IV,4/29/2008,"PS3, Xbox 360, PC","25,000,000",97.2,Rockstar Games,Take-Two Interactive,Action,"$1,750,000,000",Nominee,8,8,10
+LittleBigPlanet,10/27/2008,PS3,"8,000,000",94.8,Media Molecule,Sony,Platformer,"$240,000,000",Nominee,6,7,9
+Dead Space,10/13/2008,"PS3, Xbox 360, PC","4,500,000",88.4,Visceral Games,Electronic Arts,Survival Horror,"$135,000,000",Non-Nominee,5,6,8
+Gears of War 2,11/7/2008,Xbox 360,"6,000,000",93.1,Epic Games,Microsoft,Shooter,"$240,000,000",Non-Nominee,4,7,7
+Left 4 Dead,11/17/2008,"PC, Xbox 360","7,000,000",89.5,Valve,Valve,Shooter,"$140,000,000",Non-Nominee,4,8,7
+Uncharted 2: Among Thieves,10/13/2009,PS3,"8,520,000",95.3,Naughty Dog,Sony,Action-Adventure,"$340,000,000",Winner,9,7,10
+Batman: Arkham Asylum,8/25/2009,"PC, PS3, Xbox 360","13,200,000",90.8,Rocksteady Studios,Warner Bros.,Action,"$660,000,000",Nominee,5,8,9
+Assassin's Creed II,11/17/2009,"PC, PS3, Xbox 360","12,500,000",90.6,Ubisoft Montreal,Ubisoft,Action-Adventure,"$625,000,000",Nominee,7,7,9
+Demon's Souls,10/6/2009,PS3,"2,000,000",89.8,FromSoftware,Sony,Action RPG,"$60,000,000",Non-Nominee,4,8,7
+Borderlands,10/26/2009,"PC, PS3, Xbox 360","8,000,000",81.3,Gearbox Software,Take-Two Interactive,Shooter,"$240,000,000",Non-Nominee,3,7,6
+The Walking Dead: The Game,4/24/2012,"PC, PS3, Xbox 360, iOS, PS Vita, PS4, Xbox One, Switch","8,500,000",91.7,Telltale Games,Skybound Games,Adventure,"$85,000,000",Winner,10,8,9
+Journey,3/13/2012,"PS3, PS4, PC","7,800,000",91.7,Thatgamecompany,Annapurna Interactive,Adventure,"$78,000,000",Nominee,8,7,9
+Mass Effect 3,3/6/2012,"PC, PS3, Xbox 360, Wii U","7,000,000",92.6,BioWare,Electronic Arts,RPG,"$420,000,000",Nominee,8,7,8
+The Last of Us,6/14/2013,PS3,"20,000,000",94.8,Naughty Dog,Sony,Action-Adventure,"$600,000,000",Winner,10,8,10
+Grand Theft Auto V,9/17/2013,"PS3, Xbox 360, PS4, Xbox One, PC","185,000,000",96.4,Rockstar Games,Take-Two Interactive,Action,"$7,400,000,000",Nominee,8,8,9
+BioShock Infinite,3/26/2013,"PC, PS3, Xbox 360, PS4, Xbox One","11,000,000",93.7,Irrational Games,Take-Two Interactive,Shooter,"$550,000,000",Nominee,6,7,8
+Dragon Age: Inquisition,11/18/2014,"PC, PS3, PS4, Xbox 360, Xbox One","6,000,000",89.2,BioWare,Electronic Arts,RPG,"$200,000,000",Winner,5,8,8
+Middle-earth: Shadow of Mordor,9/30/2014,"PC, PS3, PS4, Xbox 360, Xbox One","4,600,000",85.8,Monolith Productions,Warner Bros.,Action,"$120,000,000",Nominee,5,7,9
+Bayonetta 2,9/20/2014,"Wii U, Switch","1,040,000",91.7,Platinum Games,Independent,Action,"$25,000,000",Nominee,10,8,10
+The Witcher 3: Wild Hunt,5/19/2015,"PC, PS4, Xbox One, Switch","50,000,000",93.3,CD Projekt Red,Independent,RPG,"$450,000,000",Winner,7,7,9
+Bloodborne,3/24/2015,PS4,"2,000,000",92.1,FromSoftware,Bandai Namco,Action,"$80,000,000",Nominee,6,6,8
+Fallout 4,11/10/2015,"PC, PS4, Xbox One","15,000,000",88.4,Bethesda Game Studios,Microsoft,RPG,"$750,000,000",Nominee,4,7,8
+Overwatch,5/24/2016,"PC, PS4, Xbox One, Switch","50,000,000",91.5,Blizzard Entertainment,Activision Blizzard,Shooter,"$1,000,000,000",Winner,2,9,9
+Uncharted 4: A Thief's End,5/10/2016,PS4,"16,000,000",93.8,Naughty Dog,Sony,Adventure,"$300,000,000",Nominee,3,7,8
+Doom,5/13/2016,"PC, PS4, Xbox One, Switch","4,000,000",87.9,id Software,Microsoft,Shooter,"$150,000,000",Nominee,4,8,9
+Dark Souls III,4/12/2016,"PC, PS4, Xbox One","10,000,000",89.4,FromSoftware,Bandai Namco,Action RPG,"$400,000,000",Non-Nominee,8,10,10
+Stardew Valley,2/26/2016,"PC, PS4, Xbox One, Switch","20,000,000",89.5,ConcernedApe,Independent,Simulation,"$200,000,000",Non-Nominee,6,8,9
+Titanfall 2,10/28/2016,"PC, PS4, Xbox One","8,000,000",89.3,Respawn Entertainment,Electronic Arts,Shooter,"$240,000,000",Non-Nominee,8,8,9
+The Legend of Zelda: Breath of the Wild,3/3/2017,"Switch, Wii U","31,150,000",97.2,Nintendo EPD,Nintendo,Adventure,"$900,000,000",Winner,9,8,10
+Horizon Zero Dawn,2/28/2017,"PS4, PC","24,300,000",89.7,Guerrilla Games,Sony,Action,"$450,000,000",Nominee,3,9,10
+Persona 5,4/4/2017,PS4,"9,000,000",93.6,Atlus,Sega,RPG,"$180,000,000",Nominee,2,10,9
+Super Mario Odyssey,10/27/2017,Switch,"26,440,000",97,Nintendo,Nintendo,Platformer,"$1,060,000,000",Non-Nominee,6,7,10
+PlayerUnknown's Battlegrounds,12/20/2017,"PC, Xbox One, PS4","75,000,000",86.8,PUBG Corporation,Krafton,Battle Royale,"$2,250,000,000",Non-Nominee,6,9,7
+Cuphead,9/29/2017,"PC, Xbox One, Switch","10,000,000",88.4,Studio MDHR,Independent,Run and Gun,"$100,000,000",Non-Nominee,2,8,10
+God of War (2018),4/20/2018,PS4,"23,000,000",94.7,Santa Monica Studio,Sony,Action,"$500,000,000",Winner,9,7,10
+Red Dead Redemption 2,10/26/2018,"PS4, Xbox One, PC","61,000,000",97.1,Rockstar Games,Take-Two Interactive,Action,"$6,200,000,000",Nominee,8,9,9
+Marvel's Spider-Man,9/7/2018,"PS4, PS5, PC","33,000,000",87.9,Insomniac Games,Sony,Action,"$1,000,000,000",Nominee,6,8,8
+Monster Hunter: World,1/26/2018,"PC, PS4, Xbox One","25,000,000",90.3,Capcom,Capcom,Action RPG,"$1,000,000,000",Non-Nominee,3,9,10
+Celeste,1/25/2018,"PC, Switch, PS4, Xbox One","2,000,000",92.3,Maddy Makes Games,Independent,Platformer,"$20,000,000",Non-Nominee,9,8,10
+Subnautica,1/23/2018,"PC, PS4, Xbox One, Switch","8,000,000",87.8,Unknown Worlds Entertainment,Independent,Survival,"$80,000,000",Non-Nominee,4,8,9
+Sekiro: Shadows Die Twice,3/22/2019,"PC, PS4, Xbox One","10,000,000",91.4,FromSoftware,Bandai Namco,Action,"$300,000,000",Winner,9,9,10
+Death Stranding,11/8/2019,"PS4, PC, Mac","5,000,000",86.3,Kojima Productions,Independent,Action,"$150,000,000",Nominee,6,7,9
+Control,8/27/2019,"PC, PS4, Xbox One, PS5, Xbox Series X/S","3,000,000",85.2,Remedy Entertainment,Independent,Action,"$60,000,000",Nominee,9,8,10
+Disco Elysium,10/15/2019,PC,"3,500,000",91.8,ZA/UM,Independent,RPG,"$35,000,000",Non-Nominee,4,9,8
+Outer Wilds,5/28/2019,"PC, PS4, Xbox One, Switch","2,000,000",86.2,Mobius Digital,Annapurna Interactive,Adventure,"$20,000,000",Non-Nominee,10,10,10
+Resident Evil 2 Remake,1/25/2019,"PC, PS4, Xbox One","13,900,000",91.7,Capcom,Capcom,Survival Horror,"$417,000,000",Non-Nominee,7,8,9
+The Last of Us Part II,6/19/2020,PS4,"10,000,000",93.8,Naughty Dog,Sony,Action,"$300,000,000",Winner,10,9,9
+Ghost of Tsushima,7/17/2020,"PS4, PS5","9,730,000",83.6,Sucker Punch Productions,Sony,Action,"$250,000,000",Nominee,8,8,9
+Hades,9/17/2020,"PC, Switch, PS4, PS5, Xbox One","1,000,000",93.5,Supergiant Games,Independent,Roguelike,"$20,000,000",Nominee,3,9,9
+Animal Crossing: New Horizons,3/20/2020,Switch,"44,790,000",90.8,Nintendo,Nintendo,Life Simulation,"$1,790,000,000",Non-Nominee,6,8,10
+Half-Life: Alyx,3/23/2020,PC,"3,500,000",93.1,Valve,Valve,VR Shooter,"$105,000,000",Non-Nominee,5,8,8
+Microsoft Flight Simulator,8/18/2020,"PC, Xbox Series X/S","5,000,000",91.8,Asobo Studio,Microsoft,Simulation,"$150,000,000",Non-Nominee,4,9,10
+It Takes Two,3/26/2021,"PC, PS4, PS5, Xbox One, Xbox Series X/S","10,000,000",89.7,Hazelight Studios,Electronic Arts,Adventure,"$150,000,000",Winner,10,10,10
+Ratchet & Clank: Rift Apart,6/11/2021,PS5,"2,200,000",88.9,Insomniac Games,Sony,Platformer,"$88,000,000",Nominee,7,8,10
+Resident Evil Village,5/7/2021,"PC, PS4, PS5, Xbox One, Xbox Series X/S","10,800,000",84.8,Capcom,Capcom,Survival Horror,"$350,000,000",Nominee,3,7,9
+Forza Horizon 5,11/9/2021,"PC, Xbox Series X/S, Xbox One","34,000,000",91.8,Playground Games,Microsoft,Racing,"$1,020,000,000",Non-Nominee,4,8,9
+Inscryption,10/19/2021,PC,"3,000,000",88.5,Daniel Mullins Games,Independent,Deck-building,"$30,000,000",Non-Nominee,3,9,9
+Psychonauts 2,8/25/2021,"PC, PS4, Xbox One, Xbox Series X/S","1,500,000",87.6,Double Fine Productions,Microsoft,Platformer,"$45,000,000",Non-Nominee,8,10,10
+Elden Ring,2/25/2022,"PC, Xbox One, Xbox Series X/S, PS4, PS5","13,400,000",96.8,Bandai Namco,Bandai Namco,Action,"$477,000,000",Winner,7,8,10
+God of War Ragnarok,11/9/2022,"PS5, PC","11,000,000",94.5,Santa Monica Studio,Sony,Action-Adventure,"$235,000,000",Nominee,2,7,8
+Horizon Forbidden West,2/18/2022,"PS4, PS5","530,454",88.7,Guerrilla Games,Sony,Adventure,"$104,100,000",Nominee,3,9,9
+Stray,7/19/2022,"PC, PS4, PS5","4,000,000",83.1,BlueTwelve Studio,Annapurna Interactive,Adventure,"$60,000,000",Non-Nominee,9,10,10
+Tunic,3/16/2022,"PC, Xbox Series X/S, Xbox One, PS4, PS5","2,500,000",85.8,Andrew Shouldice,Finji,Action-Adventure,"$25,000,000",Non-Nominee,8,9,9
+Vampire Survivors,12/17/2022,"PC, Xbox One, Xbox Series X/S, Switch, Mobile","20,000,000",88,Poncle,Independent,Survival,"$40,000,000",Non-Nominee,3,8,10
+Baldur's Gate 3,8/3/2023,"PC, PS5, Xbox Series X/S","22,600,000",96.4,Larian Studios,Independent,RPG,"$657,000,000",Winner,4,8,9
+The Legend of Zelda: Tears of the Kingdom,5/12/2023,Switch,"20,610,000",96.1,Nintendo EPD,Nintendo,Adventure,"$900,000,000",Nominee,2,7,9
+Alan Wake 2,10/27/2023,"PC, PS5, Xbox Series X/S","1,300,000",89.8,Remedy Entertainment,Independent,Survival Horror,"$45,000,000",Nominee,6,9,10
+Hi-Fi Rush,1/25/2023,"PC, Xbox Series X/S","4,000,000",89.2,Tango Gameworks,Microsoft,Action,"$80,000,000",Non-Nominee,8,10,10
+Marvel's Spider-Man 2,10/20/2023,PS5,"11,000,000",90,Insomniac Games,Sony,Action,"$440,000,000",Non-Nominee,5,9,9
+Super Mario Bros. Wonder,10/20/2023,Switch,"15,000,000",91.9,Nintendo,Nintendo,Platformer,"$450,000,000",Non-Nominee,7,8,10
