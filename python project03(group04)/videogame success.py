@@ -16,7 +16,7 @@ descriptions = {
     "Persona 5": "A stylish JRPG about teenagers living double lives\nas Phantom Thieves who reform corrupted adults.",
     "God of War": "A reimagining of the series where Kratos journeys\nthrough Norse mythology with his son Atreus.",
     "Red Dead Redemption 2": "A cinematic Western open-world story about Arthur Morgan\nand the fading age of outlaws.",
-    "Marvel's Spider-Man": "A fast and fluid open-world superhero game\nfeaturing Peter Parker’s battles across New York City.",
+    "Marvel's Spider-Man": "A fast and fluid open-world superhero game\nfeaturing Peter Parker's battles across New York City.",
     "Sekiro: Shadows Die Twice": "A precise, challenging action game set in Sengoku-era Japan\nfocused on sword combat and stealth.",
     "Death Stranding": "A unique strand-type game where you reconnect America\nwhile avoiding supernatural threats.",
     "Control": "A supernatural action-adventure about Jesse Faden\nexploring the strange and shifting Oldest House.",
@@ -38,61 +38,256 @@ def open_game_scene(image_path, game_title):
     scene = Toplevel(root)
     scene.title(game_title)
     scene.geometry("1500x1000")
-    scene.configure(bg="#555555")
-# This is a return button to go back to the main menu
+    scene.configure(bg="#353E43")
+    # This is a return button to go back to the main menu
     return_button = Button(scene, text="Return to Main Menu", font=("Arial", 14), command=open_start_screen)
     return_button.pack(pady=10)
-# Loads the image
+    # Loads the image
     original = Image.open(image_path)
     resized = original.copy()
     resized.thumbnail((650, 450))
     img = ImageTk.PhotoImage(resized)
-# Image on the left
-    img_label = Label(scene, image=img, bg="#555555")
+    # Image on the left
+    img_label = Label(scene, image=img, bg="#353E43")
     img_label.image = img
     img_label.pack(side=LEFT, padx=20, pady=20)
-# This thing gets the specific game description. if no description  presents dev text
+    # This thing gets the specific game description. if no description presents dev text
     game_desc = descriptions.get(game_title, "No description or not a game selected\n or something went wrong.")
-# Description text placed on the right
+    # Description text placed on the right
     info = Label(
         scene,
         text=f"{game_title}\n\n{game_desc}",
         justify=LEFT,
         font=("Arial", 14),
-        bg="#555555",
+        bg="#353E43",
         fg="white"
     )
     info.pack(side=LEFT, padx=20)
+# This opens the predictor main menu
+def open_predictor_screen():
+    for widget in root.winfo_children():
+        widget.destroy()
+    # Background image added
+    bg = PhotoImage(file="YES.png")
+    background_label = Label(root, image=bg)
+    background_label.image = bg
+    background_label.place(x=0, y=0, relwidth=1, relheight=1)
+    # HELP
+    def open_help_window():
+        win = Toplevel(root)
+        win.title("Help")
+        win.geometry("600x400")
+        win.configure(bg="#252525")
+        Label(win, text="HELP", font=("Arial", 24), fg="white", bg="#252525").pack(pady=20)
+        mesage = """Use the buttons to see the predictor.\nSingle Predictor: Predict success for one game.\nAll Predictions: See all game predictions.\nGraphs: Visualize data and results."""
+        Label(win, text=mesage, font=("Arial", 14), fg="white", bg="#252525", justify=LEFT).pack(pady=10)
+    # Credits
+    def open_credits_window():
+        win = Toplevel(root)
+        win.title("Credits")
+        win.geometry("600x400")
+        win.configure(bg="#252525")
+        Label(win, text="CREDITS", font=("Arial", 24), fg="white", bg="#252525").pack(pady=20)
+        Label(win, text="Created by Jomuel, Chris, and Kenneth \nMade with Python + Tkinter + .....",
+              font=("Arial", 14), fg="white", bg="#252525").pack(pady=10)
+    # "more slide"
+    def open_more_window():
+        win = Toplevel(root)
+        win.title("More")
+        win.geometry("600x400")
+        win.configure(bg="#252525")
+        Label(win, text="MORE", font=("Arial", 24), fg="white", bg="#252525").pack(pady=20)
+        mesage = """What elss do you want. there is no more.\n im just board"""
+        Label(win, text=mesage, font=("Arial", 14), fg="white", bg="#252525", justify=LEFT).pack(pady=10)
+    # Dance window
+    def open_dance_window():
+        win = Toplevel(root)
+        win.title("Dance")
+        win.geometry("600x400")
+        win.configure(bg="#252525")
+        Label(win, text="DANCE TIME!", font=("Arial", 24), fg="white", bg="#252525").pack(pady=10)
+        # Try to load JPG image
+        try:
+            img_path = "skeleton-dance.jpg"  # tu imagen JPG
+            original = Image.open(img_path)
+            resized = original.copy()
+            resized.thumbnail((500, 300))
+            img = ImageTk.PhotoImage(resized)
+        except:
+            # If image not found or fails to load, create a gray placeholder
+            placeholder = Image.new("RGB", (500, 300), color="gray")
+            img = ImageTk.PhotoImage(placeholder)
+        # Show the image in a Label
+        img_label = Label(win, image=img, bg="#252525")
+        img_label.image = img
+        img_label.pack(pady=20)
+    # The setting button on the top left
+    settings_button = Menubutton(root, text="Settings", relief=RAISED)
+    settings_button.menu = Menu(settings_button, tearoff=0)
+    settings_button["menu"] = settings_button.menu
+    settings_button.menu.add_command(label="Help", command=open_help_window)
+    settings_button.menu.add_command(label="Credits", command=open_credits_window)
+    settings_button.menu.add_command(label="More", command=open_more_window)
+    settings_button.menu.add_command(label="Dance", command=open_dance_window)
+    settings_button.menu.add_separator()
+    settings_button.menu.add_command(label="Exit", command=root.quit)
+    settings_button.place(x=10, y=10)
+    # This is a return button to go back to the main menu
+    return_button = Button(root, text="Return to Main Menu", font=("Arial", 14), command=open_start_screen)
+    return_button.pack(pady=10)
+    # Big text / title
+    title_label = Label(root, text="Videogame Predictor", font=("Arial", 32), bg="#353E43", fg="white")
+    title_label.pack(pady=40)
+    # Frame for images (above buttons :) )
+    image_frame = Frame(root, bg="#353E43")
+    image_frame.pack(pady=20)
+    # Load and display images for each button (no loop version)
+    # Single Predictor image
+    try:
+        original1 = Image.open("single_predictor.jpg")
+        resized1 = original1.resize((200, 150))
+        img1 = ImageTk.PhotoImage(resized1)
+    except:
+        placeholder1 = Image.new("RGB", (200, 150), "#252525")
+        img1 = ImageTk.PhotoImage(placeholder1)
+
+    img_label1 = Label(image_frame, image=img1, bg="#353E43")
+    img_label1.image = img1
+    img_label1.grid(row=0, column=0, padx=50)
+    # All Predictions image
+    try:
+        original2 = Image.open("all_predictions.jpg")
+        resized2 = original2.resize((200, 150))
+        img2 = ImageTk.PhotoImage(resized2)
+    except:
+        placeholder2 = Image.new("RGB", (200, 150), "#252525")
+        img2 = ImageTk.PhotoImage(placeholder2)
+
+    img_label2 = Label(image_frame, image=img2, bg="#353E43")
+    img_label2.image = img2
+    img_label2.grid(row=0, column=1, padx=50)
+    # Graphs image
+    try:
+        original3 = Image.open("graphs.jpg")
+        resized3 = original3.resize((200, 150))
+        img3 = ImageTk.PhotoImage(resized3)
+    except:
+        placeholder3 = Image.new("RGB", (200, 150), "#252525")
+        img3 = ImageTk.PhotoImage(placeholder3)
+
+    img_label3 = Label(image_frame, image=img3, bg="#353E43")
+    img_label3.image = img3
+    img_label3.grid(row=0, column=2, padx=50)
+    # Frame for buttons (horizontal layout)
+    button_frame = Frame(root, bg="#353E43")
+    button_frame.pack(pady=20)
+    # Create the 3 buttons horizontally
+    btn_single = Button(
+        button_frame,
+        text="Single Predictor",
+        font=("Arial", 18),
+        width=15,
+        height=2,
+        # Coming soon
+    )
+    btn_single.grid(row=0, column=0, padx=30)
+    btn_all = Button(
+        button_frame,
+        text="All Predictions",
+        font=("Arial", 18),
+        width=15,
+        height=2,
+        # Coming soon
+    )
+    btn_all.grid(row=0, column=1, padx=30)
+    btn_graphs = Button(
+        button_frame,
+        text="Graphs",
+        font=("Arial", 18),
+        width=15,
+        height=2,
+        # Coming soon
+    )
+    btn_graphs.grid(row=0, column=2, padx=30)
 # This opens the main game selection screen
 def open_videogames_screen():
     for widget in root.winfo_children():
         widget.destroy()
-# Background image added
+    # Background image added
     bg = PhotoImage(file="video_gamesbackground.png")
     background_label = Label(root, image=bg)
     background_label.image = bg
     background_label.place(x=0, y=0, relwidth=1, relheight=1)
-# The setting button on the top left
+    # HELP
+    def open_help_window():
+        win = Toplevel(root)
+        win.title("Help")
+        win.geometry("600x400")
+        win.configure(bg="#252525")
+        Label(win, text="HELP", font=("Arial", 24), fg="white", bg="#252525").pack(pady=20)
+        mesage = """Browse the game list.\nClick images to see info."""
+        Label(win, text=mesage, font=("Arial", 14), fg="white", bg="#252525", justify=LEFT).pack(pady=10)
+    # Credits
+    def open_credits_window():
+        win = Toplevel(root)
+        win.title("Credits")
+        win.geometry("600x400")
+        win.configure(bg="#252525")
+        Label(win, text="CREDITS", font=("Arial", 24), fg="white", bg="#252525").pack(pady=20)
+        Label(win, text="Created by Jomuel, Chris, and Kenneth \nMade with Python + Tkinter + .....",
+              font=("Arial", 14), fg="white", bg="#252525").pack(pady=10)
+    # "more slide"
+    def open_more_window():
+        win = Toplevel(root)
+        win.title("More")
+        win.geometry("600x400")
+        win.configure(bg="#252525")
+        Label(win, text="MORE", font=("Arial", 24), fg="white", bg="#252525").pack(pady=20)
+        mesage = """What elss do you want. there is no more.\n im just board"""
+        Label(win, text=mesage, font=("Arial", 14), fg="white", bg="#252525", justify=LEFT).pack(pady=10)
+    # Dance window
+    def open_dance_window():
+        win = Toplevel(root)
+        win.title("Dance")
+        win.geometry("600x400")
+        win.configure(bg="#252525")
+        Label(win, text="DANCE TIME!", font=("Arial", 24), fg="white", bg="#252525").pack(pady=10)
+        # Try to load JPG image
+        try:
+            img_path = "skeleton-dance.jpg"  # tu imagen JPG
+            original = Image.open(img_path)
+            resized = original.copy()
+            resized.thumbnail((500, 300))
+            img = ImageTk.PhotoImage(resized)
+        except:
+            # If image not found or fails to load, create a gray placeholder
+            placeholder = Image.new("RGB", (500, 300), color="gray")
+            img = ImageTk.PhotoImage(placeholder)
+        # Show the image in a Label
+        img_label = Label(win, image=img, bg="#252525")
+        img_label.image = img
+        img_label.pack(pady=20)
+    # The setting button on the top left
     settings_button = Menubutton(root, text="Settings", relief=RAISED)
     settings_button.menu = Menu(settings_button, tearoff=0)
     settings_button["menu"] = settings_button.menu
-    settings_button.menu.add_command(label="Help")
-    settings_button.menu.add_command(label="Credits")
-    settings_button.menu.add_command(label="More")
-    settings_button.menu.add_command(label="Dance")
+    settings_button.menu.add_command(label="Help", command=open_help_window)
+    settings_button.menu.add_command(label="Credits", command=open_credits_window)
+    settings_button.menu.add_command(label="More", command=open_more_window)
+    settings_button.menu.add_command(label="Dance", command=open_dance_window)
     settings_button.menu.add_separator()
     settings_button.menu.add_command(label="Exit", command=root.quit)
     settings_button.place(x=10, y=10)
-# This is a return button to go back to the main menu
+    # This is a return button to go back to the main menu
     return_button = Button(root, text="Return to Main Menu", font=("Arial", 14), command=open_start_screen)
     return_button.pack(pady=10)
-# Big text / title
-    title_label = Label(root, text="GAMES", font=("Arial", 32), bg="#555555", fg="white")
+    # Big text / title
+    title_label = Label(root, text="GAMES", font=("Arial", 32), bg="#353E43", fg="white")
     title_label.pack(pady=20)
-# Scroll container
-    scroll_container = Frame(root, bg="#555555")
+    # Scroll container
+    scroll_container = Frame(root, bg="#353E43")
     scroll_container.pack()
-    canvas = Canvas(scroll_container, width=1000, height=600, bg="#555555", highlightthickness=0)
+    canvas = Canvas(scroll_container, width=1000, height=600, bg="#353E43", highlightthickness=0)
     canvas.pack(side=LEFT)
     scroll_slider = Scale(
         scroll_container,
@@ -104,12 +299,13 @@ def open_videogames_screen():
         length=600
     )
     scroll_slider.pack(side=RIGHT, padx=10)
-    button_frame = Frame(canvas, bg="#555555")
+    button_frame = Frame(canvas, bg="#252525")
     canvas.create_window((0, 0), window=button_frame, anchor="nw")
     def update_scroll(pos):
         canvas.yview_moveto(int(pos) / 1000)
+
     scroll_slider.config(command=update_scroll)
-# List of games
+    # List of games
     games = [
         ("Dragon_Age.jpg", "Dragon Age: Inquisition"),
         ("Middle-earth.jpg", "Middle-earth: Shadow of Mordor"),
@@ -142,24 +338,24 @@ def open_videogames_screen():
         ("The Legend of Zelda Tears.jpg", "The Legend of Zelda: Tears of the Kingdom"),
         ("Alan Wake 2.jpeg", "Alan Wake 2")
     ]
-# Control of the games presented
+    # Control of the games presented
     columns = 5
     row = 0
     col = 0
-# Big buttons for games
+    # Big buttons for games
     for img_path, title in games:
         try:
             original = Image.open(img_path)
             resized = original.resize((150, 150))
             button_img = ImageTk.PhotoImage(resized)
         except:
-            placeholder = Image.new("RGB", (150,150), color="gray")
+            placeholder = Image.new("RGB", (150, 150), color="gray")
             button_img = ImageTk.PhotoImage(placeholder)
         btn = Button(
             button_frame,
             image=button_img,
             command=lambda p=img_path, t=title: open_game_scene(p, t),
-            bg="#555555",
+            bg="#353E43",
             borderwidth=2,
             highlightthickness=0
         )
@@ -169,36 +365,85 @@ def open_videogames_screen():
         if col >= columns:
             col = 0
             row += 1
-# Update scroll region
+    # Update scroll region
     button_frame.update_idletasks()
     canvas.config(scrollregion=canvas.bbox("all"))
 # This is the starting area (the first screen)
 def open_start_screen():
     for widget in root.winfo_children():
         widget.destroy()
-# Background image added
+    # Background image added
     bg = PhotoImage(file="YES.png")
     background_label = Label(root, image=bg)
     background_label.image = bg
     background_label.place(x=0, y=0, relwidth=1, relheight=1)
-# The setting button on the top left
+    # HELP
+    def open_help_window():
+        win = Toplevel(root)
+        win.title("Help")
+        win.geometry("600x400")
+        win.configure(bg="#252525")
+        Label(win, text="HELP", font=("Arial", 24), fg="white", bg="#252525").pack(pady=20)
+        mesage = """Use the buttons to explore the menu.\nVideogames opens the game selection screen.\nVideogame Predictor opens the predictor.\nExit closes the program (press it)."""
+        Label(win, text=mesage, font=("Arial", 14), fg="white", bg="#252525", justify=LEFT).pack(pady=10)
+    # Credits
+    def open_credits_window():
+        win = Toplevel(root)
+        win.title("Credits")
+        win.geometry("600x400")
+        win.configure(bg="#252525")
+        Label(win, text="CREDITS", font=("Arial", 24), fg="white", bg="#252525").pack(pady=20)
+        Label(win, text="Created by Jomuel, Chris, and Kenneth \nMade with Python + Tkinter + .....",
+              font=("Arial", 14), fg="white", bg="#252525").pack(pady=10)
+    # "more slide"
+    def open_more_window():
+        win = Toplevel(root)
+        win.title("More")
+        win.geometry("600x400")
+        win.configure(bg="#252525")
+        Label(win, text="MORE", font=("Arial", 24), fg="white", bg="#252525").pack(pady=20)
+        mesage = """What elss do you want. there is no more.\n im just board"""
+        Label(win, text=mesage, font=("Arial", 14), fg="white", bg="#252525", justify=LEFT).pack(pady=10)
+    # Dance window
+    def open_dance_window():
+        win = Toplevel(root)
+        win.title("Dance")
+        win.geometry("600x400")
+        win.configure(bg="#252525")
+        Label(win, text="DANCE TIME!", font=("Arial", 24), fg="white", bg="#252525").pack(pady=10)
+        # Try to load JPG image
+        try:
+            img_path = "skeleton-dance.jpg"
+            original = Image.open(img_path)
+            resized = original.copy()
+            resized.thumbnail((500, 300))
+            img = ImageTk.PhotoImage(resized)
+        except:
+            # If image not found or fails to load, create a gray placeholder
+            placeholder = Image.new("RGB", (500, 300), color="gray")
+            img = ImageTk.PhotoImage(placeholder)
+        # Show the image in a Label
+        img_label = Label(win, image=img, bg="#252525")
+        img_label.image = img
+        img_label.pack(pady=20)
+    # The setting button on the top left
     settings_button = Menubutton(root, text="Settings", relief=RAISED)
     settings_button.menu = Menu(settings_button, tearoff=0)
     settings_button["menu"] = settings_button.menu
-    settings_button.menu.add_command(label="Help")
-    settings_button.menu.add_command(label="Credits")
-    settings_button.menu.add_command(label="More")
-    settings_button.menu.add_command(label="Dance")
+    settings_button.menu.add_command(label="Help", command=open_help_window)
+    settings_button.menu.add_command(label="Credits", command=open_credits_window)
+    settings_button.menu.add_command(label="More", command=open_more_window)
+    settings_button.menu.add_command(label="Dance", command=open_dance_window)
     settings_button.menu.add_separator()
     settings_button.menu.add_command(label="Exit", command=root.quit)
     settings_button.place(x=10, y=10)
-# Big text / title
-    start_title = Label(root, text="Videogame success", font=("Arial", 40), bg="#555555", fg="white")
+    # Big text / title
+    start_title = Label(root, text="Videogame success", font=("Arial", 40), bg="#353E43", fg="white")
     start_title.pack(pady=80)
-# The 3 starting buttons
-    start_frame = Frame(root, bg="#555555")
+    # The 3 starting buttons
+    start_frame = Frame(root, bg="#353E43")
     start_frame.pack(pady=20)
-# First button: Videogames
+    # First button: Videogames
     btn_games = Button(
         start_frame,
         text="Videogames",
@@ -207,16 +452,16 @@ def open_start_screen():
         command=open_videogames_screen
     )
     btn_games.pack(pady=10)
-# Second button: videogame predictor
+    # Second button: videogame predictor
     btn_predictor = Button(
         start_frame,
         text="Videogame Predictor",
         font=("Arial", 20),
-        width=20
-        # Coming soon
+        width=20,
+        command=open_predictor_screen
     )
     btn_predictor.pack(pady=10)
-# The third button: exit
+    # The third button: exit
     btn_exit = Button(
         start_frame,
         text="Exit",
@@ -229,7 +474,7 @@ def open_start_screen():
 root = Tk()
 root.title("Game Selector")
 root.geometry("1500x1000")
-root.configure(bg="#555555")
+root.configure(bg="#353E43")
 # Open the start screen first
 open_start_screen()
 root.mainloop()
