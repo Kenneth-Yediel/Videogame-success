@@ -1,7 +1,7 @@
 # Controller.py - Handles events and connects View with Model
 from GOTY_View import GameView
-from GOTY_Model import RandomForestStrategy
-from Graph_maker import *
+#from GOTY_Model import RandomForestStrategy
+#from Graph_maker import *
 from tkinter import *
 from PIL import Image, ImageTk
 # Create a controller class for the GUI
@@ -45,36 +45,36 @@ class GameController:
         }
 # List of all games with associated image files
         self.games = [
-            ("Dragon_Age.jpg", "Dragon Age: Inquisition"),
-            ("Middle-earth.jpg", "Middle-earth: Shadow of Mordor"),
-            ("Bayonetta2.jpg", "Bayonetta 2"),
-            ("TheWitcher3.png", "The Witcher 3: Wild Hunt"),
-            ("Bloodborne.jpg", "Bloodborne"),
-            ("Fallout 4.jpg", "Fallout 4"),
-            ("Overwatch.jpg", "Overwatch"),
-            ("Uncharted 4.jpg", "Uncharted 4: A Thief's End"),
-            ("Doom.png", "Doom"),
-            ("The Legen.jpeg", "The Legend of Zelda: Breath of the Wild"),
-            ("Horizon.jpg", "Horizon Zero Dawn"),
-            ("Persona 5.jpg", "Persona 5"),
-            ("God of War.jpg", "God of War"),
-            ("Red Dead Redemption 2.jpg", "Red Dead Redemption 2"),
-            ("Marvel's Spider-Man.jpg", "Marvel's Spider-Man"),
-            ("SekiroShadows Die Twice.jpg", "Sekiro: Shadows Die Twice"),
-            ("Death Stranding.jpg", "Death Stranding"),
-            ("Control.jpg", "Control"),
-            ("The Last of Us Part II.jpg", "The Last of Us Part II"),
-            ("Ghost of Tsushima.jpg", "Ghost of Tsushima"),
-            ("Hades.jpg", "Hades"),
-            ("It Takes Two.jpg", "It Takes Two"),
-            ("Ratchet & Clank.jpeg", "Ratchet & Clank: Rift Apart"),
-            ("Resident Evil Village.jpg", "Resident Evil Village"),
-            ("Elden Ring.jpg", "Elden Ring"),
-            ("God of War Ragnarok.jpg", "God of War Ragnarok"),
-            ("Horizon Forbidden West.jpg", "Horizon Forbidden West"),
-            ("Baldur's Gate 3.jpg", "Baldur's Gate 3"),
-            ("The Legend of Zelda Tears.jpg", "The Legend of Zelda: Tears of the Kingdom"),
-            ("Alan Wake 2.jpeg", "Alan Wake 2")
+            ("Training_fotos/Dragon_Age.jpg", "Dragon Age: Inquisition"),
+            ("Training_fotos/Middle-earth.jpg", "Middle-earth: Shadow of Mordor"),
+            ("Training_fotos/Bayonetta2.jpg", "Bayonetta 2"),
+            ("Training_fotos/TheWitcher3.png", "The Witcher 3: Wild Hunt"),
+            ("Training_fotos/Bloodborne.jpg", "Bloodborne"),
+            ("Training_fotos/Fallout 4.jpg", "Fallout 4"),
+            ("Training_fotos/Overwatch.jpg", "Overwatch"),
+            ("Training_fotos/Uncharted 4.jpg", "Uncharted 4: A Thief's End"),
+            ("Training_fotos/Doom.png", "Doom"),
+            ("Training_fotos/The Legen.jpeg", "The Legend of Zelda: Breath of the Wild"),
+            ("Training_fotos/Horizon.jpg", "Horizon Zero Dawn"),
+            ("Training_fotos/Persona 5.jpg", "Persona 5"),
+            ("Training_fotos/God of War.jpg", "God of War"),
+            ("Training_fotos/Red Dead Redemption 2.jpg", "Red Dead Redemption 2"),
+            ("Training_fotos/Marvel's Spider-Man.jpg", "Marvel's Spider-Man"),
+            ("Training_fotos/SekiroShadows Die Twice.jpg", "Sekiro: Shadows Die Twice"),
+            ("Training_fotos/Death Stranding.jpg", "Death Stranding"),
+            ("Training_fotos/Control.jpg", "Control"),
+            ("Training_fotos/The Last of Us Part II.jpg", "The Last of Us Part II"),
+            ("Training_fotos/Ghost of Tsushima.jpg", "Ghost of Tsushima"),
+            ("Training_fotos/Hades.jpg", "Hades"),
+            ("Training_fotos/It Takes Two.jpg", "It Takes Two"),
+            ("Training_fotos/Ratchet & Clank.jpeg", "Ratchet & Clank: Rift Apart"),
+            ("Training_fotos/Resident Evil Village.jpg", "Resident Evil Village"),
+            ("Training_fotos/Elden Ring.jpg", "Elden Ring"),
+            ("Training_fotos/God of War Ragnarok.jpg", "God of War Ragnarok"),
+            ("Training_fotos/Horizon Forbidden West.jpg", "Horizon Forbidden West"),
+            ("Training_fotos/Baldur's Gate 3.jpg", "Baldur's Gate 3"),
+            ("Training_fotos/The Legend of Zelda Tears.jpg", "The Legend of Zelda: Tears of the Kingdom"),
+            ("Training_fotos/Alan Wake 2.jpeg", "Alan Wake 2")
         ]
 # Open the first screen when the program starts
         self.open_start_screen()
@@ -83,7 +83,7 @@ class GameController:
 # Clear previous widgets
         self.view.clear_screen()
         # Set background image
-        self.view.create_background("YES.png")
+        self.view.create_background("Back_ground_and_other_stuff/YES.png")
         # --- Settings menu windows (Help, Credits, More, Dance) ---
         def open_help_window():
             win = Toplevel(self.root)
@@ -117,7 +117,7 @@ class GameController:
             Label(win, text="DANCE TIME!", font=("Arial", 24), fg="white", bg="#444444").pack(pady=10)
 # Load dance image
             try:
-                img_path = "skeleton-dance.jpg"
+                img_path = "Back_ground_and_other_stuff/skeleton-dance.jpg"
                 original = Image.open(img_path)
                 resized = original.copy()
                 resized.thumbnail((500, 300))
@@ -152,7 +152,7 @@ class GameController:
 # Load and display images for each button
 # Single Predictor image
         try:
-            original1 = Image.open("single_predictor.jpg")
+            original1 = Image.open("Back_ground_and_other_stuff/single_predictor.jpg")
             resized1 = original1.resize((200, 150))
             img1 = ImageTk.PhotoImage(resized1)
             img_label1 = Label(image_frame, image=img1, bg="#555555")
@@ -167,7 +167,7 @@ class GameController:
             img_label1.grid(row=0, column=0, padx=50)
 # All Predictions image
         try:
-            original2 = Image.open("all_predictions.jpg")
+            original2 = Image.open("Back_ground_and_other_stuff/all_predictions.jpg")
             resized2 = original2.resize((200, 150))
             img2 = ImageTk.PhotoImage(resized2)
             img_label2 = Label(image_frame, image=img2, bg="#555555")
@@ -181,7 +181,7 @@ class GameController:
             img_label2.grid(row=0, column=1, padx=50)
 # Graphs image
         try:
-            original3 = Image.open("graphs.jpg")
+            original3 = Image.open("Back_ground_and_other_stuff/graphs.jpg")
             resized3 = original3.resize((200, 150))
             img3 = ImageTk.PhotoImage(resized3)
             img_label3 = Label(image_frame, image=img3, bg="#555555")
@@ -228,11 +228,71 @@ class GameController:
     def open_single_predictor(self):
         # This will open the single game prediction interface
         print("Opening Single Predictor...")
-        # TODO: Implement single prediction interface
+
+#============
     def open_all_predictions(self):
         # This will show predictions for all games
         print("Opening All Predictions...")
-        # TODO: Implement all predictions display
+
+        win = Toplevel()
+        win.title("All Predictions")
+        win.geometry("750x500")
+        win.configure(bg="#252525")
+
+        # TITLES
+        titles_frame = Frame(win, bg="#252525")
+        titles_frame.pack(pady=10)
+
+        Label(
+            titles_frame,
+            text="Winner",
+            font=("Arial", 20, "bold"),
+            bg="#252525",
+            fg="white",
+            width=15
+        ).pack(side=LEFT, padx=100)
+
+        Label(
+            titles_frame,
+            text="Lossers",
+            font=("Arial", 20, "bold"),
+            bg="#252525",
+            fg="white",
+            width=15
+        ).pack(side=RIGHT, padx=100)
+
+        # Sliders frame
+        sliders_frame = Frame(win, bg="#252525")
+        sliders_frame.pack(pady=20)
+
+        # Winner slider
+        slider_left = Scale(
+            sliders_frame,
+            from_=0,
+            to=100,
+            orient=VERTICAL,
+            bg="#222222",
+            fg="white",
+            length=350
+        )
+        slider_left.pack(side=LEFT, padx=80)
+
+        # Losers slider
+        slider_right = Scale(
+            sliders_frame,
+            from_=0,
+            to=100,
+            orient=VERTICAL,
+            bg="#222222",
+            fg="white",
+            length=350
+        )
+        slider_right.pack(side=RIGHT, padx=80)
+
+
+    #=====================
+
+
     def open_graphs_screen(self):
         # This will show data visualizations
         print("Opening Graphs...")
@@ -275,7 +335,7 @@ class GameController:
 # Clear previous widgets
         self.view.clear_screen()
 # Set background image
-        self.view.create_background("video_gamesbackground.png")
+        self.view.create_background("Back_ground_and_other_stuff/video_gamesbackground.png")
 # --- Settings menu windows (Help, Credits, More, Dance) ---
         def open_help_window():
             win = Toplevel(self.root)
@@ -309,7 +369,7 @@ class GameController:
             Label(win, text="DANCE TIME!", font=("Arial", 24), fg="white", bg="#444444").pack(pady=10)
 # Load dance image
             try:
-                img_path = "skeleton-dance.jpg"
+                img_path = "Back_ground_and_other_stuff/skeleton-dance.jpg"
                 original = Image.open(img_path)
                 resized = original.copy()
                 resized.thumbnail((500, 300))
@@ -361,12 +421,16 @@ class GameController:
         def update_scroll(pos):
             canvas.yview_moveto(int(pos) / 1000)
         scroll_slider.config(command=update_scroll)
+
+# Store references to images to prevent garbage collection
+        self.game_images = []
+
 # Layout game images in a grid (5 per row)
         columns = 5
         row = 0
         col = 0
         for img_path, title in self.games:
-# Load each game image safely
+            # Load each game image safely
             try:
                 original = Image.open(img_path)
                 resized = original.resize((150, 150))
@@ -374,7 +438,8 @@ class GameController:
             except:
                 placeholder = Image.new("RGB", (150, 150), color="gray")
                 button_img = ImageTk.PhotoImage(placeholder)
-# Create clickable button that opens game detail window
+
+            # Create clickable button that opens game detail window
             btn = Button(
                 button_frame,
                 image=button_img,
@@ -385,20 +450,26 @@ class GameController:
             )
             btn.image = button_img  # prevent garbage collection
             btn.grid(row=row, column=col, padx=20, pady=20)
-# Move to next row/column in grid
+
+            # Keep a reference in the list
+            self.game_images.append(button_img)
+
+            # Move to next row/column in grid
             col += 1
             if col >= columns:
                 col = 0
                 row += 1
-# Update scroll area to match content size
+
+        # Update scroll area to match content size
         button_frame.update_idletasks()
         canvas.config(scrollregion=canvas.bbox("all"))
+
 # Main start screen of the application
     def open_start_screen(self):
 # Clear previous screen
         self.view.clear_screen()
 # Background image
-        self.view.create_background("YES.png")
+        self.view.create_background("Back_ground_and_other_stuff/YES.png")
 # --- Settings menu pop-ups ---
         def open_help_window():
             win = Toplevel(self.root)
@@ -440,7 +511,7 @@ class GameController:
             win.configure(bg="#444444")
             Label(win, text="DANCE TIME!", font=("Arial", 24), fg="white", bg="#444444").pack(pady=10)
             try:
-                img_path = "skeleton-dance.jpg"
+                img_path = "Back_ground_and_other_stuff/skeleton-dance.jpg"
                 original = Image.open(img_path)
                 resized = original.copy()
                 resized.thumbnail((500, 300))
@@ -482,7 +553,8 @@ class GameController:
             start_frame,
             text="Video game Predictor",
             font=("Arial", 20),
-            width=20
+            width=20,
+            command=self.open_predictor_screen
         )
         btn_predictor.pack(pady=10)
 # Exit program
@@ -494,6 +566,8 @@ class GameController:
             command=self.root.quit
         )
         btn_exit.pack(pady=10)
+
+
 # Starts Tkinter event loop
     def run(self):
         self.root.mainloop()
