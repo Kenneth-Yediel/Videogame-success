@@ -154,6 +154,10 @@ class GameController:
         return_button = Button(self.root, text="Return to Main Menu", font=("Arial", 14),
                                command=self.open_start_screen)
         return_button.pack(pady=10)
+# Exit button for ease of access
+        exit_button = Button(self.root, text="Exit", font=("Arial", 14), command=self.root.quit)
+        exit_button.pack(pady=10)
+        exit_button.place(x=1445, y=10)
 # Big text / title for predictor screen
         title_label = Label(self.root, text="Videogame Predictor", font=("Arial", 32), bg="#555555", fg="white")
         title_label.pack(pady=40)
