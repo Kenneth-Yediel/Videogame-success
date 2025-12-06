@@ -1,7 +1,17 @@
 # Controller.py - Handles events and connects View with Model
+import csv
+import datetime
+import shutil
+from tkinter import filedialog, messagebox
+import numpy as np
+import os
 from GOTY_View import GameView
-#from GOTY_Model import RandomForestStrategy
-#from Graph_maker import *
+from GOTY_Model import randomF_Strat
+from Graph_maker import (
+    load_goty_csv,
+    build_similarity_graph_from_df,
+    GraphWindow
+)
 from tkinter import *
 from PIL import Image, ImageTk
 # Create a controller class for the GUI
@@ -10,6 +20,7 @@ class GameController:
 # Link controller to root window and create view
         self.root = root
         self.view = GameView(root)
+        self.ml_model = randomF_Strat
 # Descriptions for each game displayed in the detail window
         self.descriptions = {
             "Dragon Age: Inquisition": "A massive fantasy RPG where you lead the Inquisition\nand seal the Breach across Thedas.",
@@ -226,78 +237,318 @@ class GameController:
         btn_graphs.grid(row=0, column=2, padx=30)
 # Placeholder functions for predictor screens (to be implemented)
     def open_single_predictor(self):
-        # This will open the single game prediction interface
-        print("Opening Single Predictor...")
-
-#============
+# Clear previous widgets
+        self.view.clear_screen()
+# Set background image
+        self.view.create_background("Back_ground_and_other_stuff/YES.png")
+# Title for predictor screen
+        title_label = Label(self.root, text="Single Game Predictor", font=("Arial", 32, "bold"),
+                            bg="#555555", fg="white")
+        title_label.pack(pady=20)
+# Frame for the entire content
+        main_frame = Frame(self.root, bg="#555555")
+        main_frame.pack(pady=20)
+# RIGHT SIDE: Image upload and display
+        right_frame = Frame(main_frame, bg="#555555", width=400)
+        right_frame.pack(side=RIGHT, padx=50)
+# Game image display
+        self.game_image_label = Label(right_frame, text="Upload Game Image",
+                                      bg="#444444", fg="white",
+                                      width=30, height=15, font=("Arial", 12))
+        self.game_image_label.pack(pady=10)
+# Upload image button
+        upload_btn = Button(right_frame, text="Upload Game Image",
+                            font=("Arial", 14), bg="#4CAF50", fg="white",
+                            command=self.uploadGameImage)
+        upload_btn.pack(pady=10)
+# Predict button
+        predict_btn = Button(right_frame, text="PREDICT GOTY SUCCESS",
+                             font=("Arial", 18, "bold"), bg="#2196F3", fg="white",
+                             width=21, height=2, command=self.runPrediction)
+        predict_btn.pack(pady=10)
+# LEFT SIDE: Input fields
+        left_frame = Frame(main_frame, bg="#555555", width=500)
+        left_frame.pack(side=LEFT, padx=50)
+# Game name
+        Label(left_frame, text="Game Name:", font=("Arial", 14),
+              bg="#555555", fg="white").pack(anchor="w", pady=(0, 5))
+        self.game_name_entry = Entry(left_frame, font=("Arial", 14), width=30)
+        self.game_name_entry.pack(pady=(0, 15))
+# Ratings (0-100)
+        Label(left_frame, text="Ratings (0-100):", font=("Arial", 14),
+              bg="#555555", fg="white").pack(anchor="w", pady=(0, 5))
+        self.ratings_slider = Scale(left_frame, from_=0, to=100, orient=HORIZONTAL,
+                                    bg="#444444", fg="white", length=300)
+        self.ratings_slider.set(80)
+        self.ratings_slider.pack(pady=(0, 15))
+# Copies Sold
+        Label(left_frame, text="Copies Sold (millions):", font=("Arial", 14),
+              bg="#555555", fg="white").pack(anchor="w", pady=(0, 5))
+        self.copies_entry = Entry(left_frame, font=("Arial", 14), width=30)
+        self.copies_entry.insert(0, "5.0")
+        self.copies_entry.pack(pady=(0, 15))
+# Revenue
+        Label(left_frame, text="Revenue ($ millions):", font=("Arial", 14),
+              bg="#555555", fg="white").pack(anchor="w", pady=(0, 5))
+        self.revenue_entry = Entry(left_frame, font=("Arial", 14), width=30)
+        self.revenue_entry.insert(0, "200.0")
+        self.revenue_entry.pack(pady=(0, 15))
+# Narrative
+        Label(left_frame, text="Narrative Quality (0-10):", font=("Arial", 14),
+              bg="#555555", fg="white").pack(anchor="w", pady=(0, 5))
+        self.narrative_slider = Scale(left_frame, from_=0, to=10, orient=HORIZONTAL,
+                                      bg="#444444", fg="white", length=300)
+        self.narrative_slider.set(7)
+        self.narrative_slider.pack(pady=(0, 15))
+# Innovation
+        Label(left_frame, text="Innovation (0-10):", font=("Arial", 14),
+              bg="#555555", fg="white").pack(anchor="w", pady=(0, 5))
+        self.innovation_slider = Scale(left_frame, from_=0, to=10, orient=HORIZONTAL,
+                                       bg="#444444", fg="white", length=300)
+        self.innovation_slider.set(7)
+        self.innovation_slider.pack(pady=(0, 15))
+# Art Direction
+        Label(left_frame, text="Art Direction (0-10):", font=("Arial", 14),
+              bg="#555555", fg="white").pack(anchor="w", pady=(0, 5))
+        self.art_slider = Scale(left_frame, from_=0, to=10, orient=HORIZONTAL,
+                                bg="#444444", fg="white", length=300)
+        self.art_slider.set(7)
+        self.art_slider.pack(pady=(0, 15))
+# Genre
+        Label(left_frame, text="Genre:", font=("Arial", 14),
+              bg="#555555", fg="white").pack(anchor="w", pady=(0, 5))
+        genres = ["Action", "RPG", "Adventure", "Shooter", "Platformer", "Strategy",
+                  "Simulation", "Sports", "Racing", "Fighting", "Action RPG", "Horror"]
+        self.genre_var = StringVar(value="Action")
+        genre_menu = OptionMenu(left_frame, self.genre_var, *genres)
+        genre_menu.config(font=("Arial", 12), width=25)
+        genre_menu.pack(pady=(0, 20))
+# Result display area
+        self.result_label = Label(right_frame, text="", font=("Arial", 16),
+                                  bg="#555555", fg="white")
+        self.result_label.pack(pady=5)
+# Back button
+        back_btn = Button(right_frame, text="← Back to Predictor Menu",
+                          font=("Arial", 12), bg="#666666", fg="white",
+                          command=self.open_predictor_screen)
+        back_btn.pack(pady=10)
+# Handles image uploading
+    def uploadGameImage(self):
+        filetypes = [("Image files", "*.jpg *.jpeg *.png *.bmp")]
+        filename = filedialog.askopenfilename(title="Select Game Image",
+                                              filetypes=filetypes)
+        if filename:
+            try:
+# Store the image path
+                self.current_uploaded_image = filename
+# Load and resize image
+                original = Image.open(filename)
+                resized = original.resize((500, 300))
+                img = ImageTk.PhotoImage(resized)
+# Update the image label
+                self.game_image_label.config(image=img, text="")
+                self.game_image_label.image = img  # Keep reference
+            except Exception as e:
+                messagebox.showerror("Error", f"Could not load image: {str(e)}")
+# Function for running the prediction
+    def runPrediction(self):
+        try:
+# Get values from inputs
+            game_name = self.game_name_entry.get()
+            ratings = self.ratings_slider.get()
+            copies_sold = float(self.copies_entry.get())
+            revenue = float(self.revenue_entry.get())
+            narrative = self.narrative_slider.get()
+            innovation = self.innovation_slider.get()
+            art_direction = self.art_slider.get()
+            genre = self.genre_var.get()
+# Validate inputs
+            if not game_name.strip():
+                messagebox.showerror("Input Error", "Please enter a game name.")
+                return
+            if copies_sold <= 0:
+                messagebox.showerror("Input Error", "Copies sold must be greater than 0.")
+                return
+            if revenue <= 0:
+                messagebox.showerror("Input Error", "Revenue must be greater than 0.")
+                return
+# Calculate revenue per copy
+            revenue_per_copy = revenue / copies_sold if copies_sold > 0 else 0
+# Calculate log transformations
+            log_copies = np.log1p(copies_sold)
+            log_revenue = np.log1p(revenue)
+# Prepare features array
+            numeric_features = [
+                ratings,  # 1. Ratings
+                revenue_per_copy,  # 2. Revenue_per_copy
+                log_copies,  # 3. Log_Copies
+                log_revenue,  # 4. Log_Revenue
+                narrative,  # 5. Narrative_Quality
+                art_direction,  # 6. Art_Direction
+                innovation  # 7. Innovation
+            ]
+            all_possible_genres = ["Genre_Action", "Genre_Action RPG", "Genre_Action-Adventure",
+            "Genre_Adventure", "Genre_Battle Royale", "Genre_Deck-building", "Genre_Life Simulation",
+            "Genre_Music", "Genre_Platformer", "Genre_Puzzle", "Genre_RPG", "Genre_RTS", "Genre_Racing",
+            "Genre_Roguelike", "Genre_Run and Gun", "Genre_Shooter", "Genre_Simulation", "Genre_Sports",
+            "Genre_Survival", "Genre_Survival Horror", "Genre_Tactical Shooter", "Genre_VR Shooter"]
+# Create genre features: 1 for selected genre, 0 for others
+            genre_features = []
+            for possible_genre in all_possible_genres:
+# Extract genre name from encoded column name
+# "Genre_Action RPG" -> "Action RPG"
+                genre_name = possible_genre.replace("Genre_", "")
+                if genre_name == genre:
+                    genre_features.append(1.0)
+                else:
+                    genre_features.append(0.0)
+            allFeatures = numeric_features + genre_features
+# Add genre encoding
+            prediction = self.ml_model.predict(allFeatures)
+# Map prediction to readable result
+            prediction_map = {2: "🏆 WINNER", 1: "⭐ NOMINEE", 0: "❌ NOT NOMINATED"}
+            result_text = prediction_map.get(prediction, "Unknown")
+# Create result message
+            if self.current_uploaded_image:
+                img_status = "✓ Image uploaded"
+            else:
+                img_status = "⚠ No image uploaded"
+            result_message = f"""
+            PREDICTION RESULT for '{game_name}':
+             Status: {result_text}
+             Confidence: {(prediction / 2) * 100:.1f}%
+            {img_status}
+            Input Summary:
+             Ratings: {ratings}/100
+             Copies Sold: {copies_sold:.1f} million
+             Revenue: ${revenue:.1f} million
+             Narrative: {narrative}/10
+             Innovation: {innovation}/10
+             Art Direction: {art_direction}/10
+             Genre: {genre}
+            """
+# Display result
+            self.result_label.config(text=result_message)
+            saved_image_path = self.saveGameImage(self.current_uploaded_image, game_name)
+# If we have an image, display it in a separate window
+            if self.current_uploaded_image:
+                self.showPredictionResults(game_name, result_text, self.current_uploaded_image)
+# After successful prediction, save to CSV
+                self.savePredictionToCSV(
+                    game_name=game_name,
+                    ratings=ratings,
+                    copies_sold=copies_sold,
+                    revenue=revenue,
+                    narrative=narrative,
+                    innovation=innovation,
+                    art_direction=art_direction,
+                    genre=genre,
+                    prediction=result_text,
+                    confidence=(prediction / 2) * 100,
+                    image=saved_image_path
+                )
+        except ValueError as e:
+            messagebox.showerror("Input Error", "Please enter valid numbers for all fields.")
+        except Exception as e:
+            messagebox.showerror("Prediction Error", f"An error occurred: {str(e)}")
+# Save the prediction on a csv file
+    def savePredictionToCSV(self, game_name, ratings, copies_sold, revenue, narrative,
+                            innovation, art_direction, genre, prediction, confidence, image=None):
+        filename = "Prediction_History.csv"
+# Check if file exists to write headers
+        file_exists = os.path.isfile(filename)
+        with open(filename, 'a', newline='') as f:
+            writer = csv.writer(f)
+# Write header if new file
+            if not file_exists:
+                writer.writerow([
+                     'game_name', 'ratings', 'copies_sold',
+                    'revenue', 'narrative', 'innovation', 'art_direction',
+                    'genre', 'prediction', 'confidence', 'image'
+                ])
+# Write prediction data
+                writer.writerow([
+                    game_name,
+                    ratings,
+                    copies_sold,
+                    revenue,
+                    narrative,
+                    innovation,
+                    art_direction,
+                    genre,
+                    prediction,
+                    f"{confidence:.1f}",
+                    image if image else "No image"
+                ])
+# Method for saving user game image
+    def saveGameImage(self, image_path, game_name):
+        """Save uploaded game image to Saved_game_images folder"""
+        try:
+# Create Saved_game_images folder if it doesn't exist
+            save_folder = "Saved_game_images"
+            if not os.path.exists(save_folder):
+                os.makedirs(save_folder)
+# Get file extension from original image
+            file_extension = os.path.splitext(image_path)[1]
+# Create safe filename from game name (remove special characters)
+            safe_name = "".join(c for c in game_name if c.isalnum() or c in (' ', '-', '_')).strip()
+            safe_name = safe_name.replace(' ', '_')
+# Add timestamp to avoid overwriting
+            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+            new_filename = f"{safe_name}_{timestamp}{file_extension}"
+# Full path for saved image
+            save_path = os.path.join(save_folder, new_filename)
+# Copy image to saved folder
+            shutil.copy2(image_path, save_path)
+            return save_path
+        except Exception as e:
+            messagebox.showerror(f"Error saving image: {str(e)}")
+            return None
+# The prediction results
+    def showPredictionResults(self, game_name, result, image_path):
+        result_window = Toplevel(self.root)
+        result_window.title(f"Prediction Result - {game_name}")
+        result_window.geometry("800x600")
+        result_window.configure(bg="#444444")
+# Result header
+        header = Label(result_window, text=f" {game_name}",
+                       font=("Arial", 28, "bold"), bg="#444444", fg="white")
+        header.pack(pady=20)
+# Prediction status with color coding
+        status_color = "#4CAF50" if "WINNER" in result else "#FF9800" if "NOMINEE" in result else "#F44336"
+        status_label = Label(result_window, text=result, font=("Arial", 24, "bold"),
+                             bg=status_color, fg="white", padx=20, pady=10)
+        status_label.pack(pady=10)
+# Display uploaded image
+        try:
+            original = Image.open(image_path)
+            resized = original.resize((400, 250))
+            img = ImageTk.PhotoImage(resized)
+            img_label = Label(result_window, image=img, bg="#444444")
+            img_label.image = img
+            img_label.pack(pady=20)
+        except:
+            pass  # Skip image if there's an error
+# Close button
+        close_btn = Button(result_window, text="Close", font=("Arial", 14),
+                           bg="#2196F3", fg="white", width=15,
+                           command=result_window.destroy)
+        close_btn.pack(pady=20)
     def open_all_predictions(self):
-        # This will show predictions for all games
+# This will show predictions for all games
         print("Opening All Predictions...")
-
-        win = Toplevel()
-        win.title("All Predictions")
-        win.geometry("750x500")
-        win.configure(bg="#252525")
-
-        # TITLES
-        titles_frame = Frame(win, bg="#252525")
-        titles_frame.pack(pady=10)
-
-        Label(
-            titles_frame,
-            text="Winner",
-            font=("Arial", 20, "bold"),
-            bg="#252525",
-            fg="white",
-            width=15
-        ).pack(side=LEFT, padx=100)
-
-        Label(
-            titles_frame,
-            text="Lossers",
-            font=("Arial", 20, "bold"),
-            bg="#252525",
-            fg="white",
-            width=15
-        ).pack(side=RIGHT, padx=100)
-
-        # Sliders frame
-        sliders_frame = Frame(win, bg="#252525")
-        sliders_frame.pack(pady=20)
-
-        # Winner slider
-        slider_left = Scale(
-            sliders_frame,
-            from_=0,
-            to=100,
-            orient=VERTICAL,
-            bg="#222222",
-            fg="white",
-            length=350
-        )
-        slider_left.pack(side=LEFT, padx=80)
-
-        # Losers slider
-        slider_right = Scale(
-            sliders_frame,
-            from_=0,
-            to=100,
-            orient=VERTICAL,
-            bg="#222222",
-            fg="white",
-            length=350
-        )
-        slider_right.pack(side=RIGHT, padx=80)
-
-
-    #=====================
-
-
+        # TODO: Implement all predictions display
     def open_graphs_screen(self):
-        # This will show data visualizations
-        print("Opening Graphs...")
-        # TODO: Implement graphs and visualizations
-# Opens a window showing the selected game's details
+# This will show data visualizations
+        try:
+            df = load_goty_csv("GOTY(2005-2023).csv")
+            G = build_similarity_graph_from_df(df)
+            GraphWindow(self.root, df=df, G=G)
+        except FileNotFoundError:
+            messagebox.showerror("Error: Could not find GOTY(2005-2023).csv file")
+        except Exception as e:
+            messagebox.showerror(f"Error opening graphs: {e}")
+    # Opens a window showing the selected game's details
     def open_game_scene(self, image_path, game_title):
         scene = Toplevel(self.root)
         scene.title(game_title)
@@ -359,7 +610,7 @@ class GameController:
             win.geometry("600x400")
             win.configure(bg="#444444")
             Label(win, text="MORE", font=("Arial", 24), fg="white", bg="#444444").pack(pady=20)
-            Label(win, text="What elss do you want. there is no more.\n im just board",
+            Label(win, text="What else do you want. there is no more.\n we are just bored",
                   font=("Arial", 14), fg="white", bg="#444444").pack(pady=10)
         def open_dance_window():
             win = Toplevel(self.root)
@@ -421,16 +672,12 @@ class GameController:
         def update_scroll(pos):
             canvas.yview_moveto(int(pos) / 1000)
         scroll_slider.config(command=update_scroll)
-
-# Store references to images to prevent garbage collection
-        self.game_images = []
-
 # Layout game images in a grid (5 per row)
         columns = 5
         row = 0
         col = 0
         for img_path, title in self.games:
-            # Load each game image safely
+# Load each game image safely
             try:
                 original = Image.open(img_path)
                 resized = original.resize((150, 150))
@@ -438,8 +685,7 @@ class GameController:
             except:
                 placeholder = Image.new("RGB", (150, 150), color="gray")
                 button_img = ImageTk.PhotoImage(placeholder)
-
-            # Create clickable button that opens game detail window
+# Create clickable button that opens game detail window
             btn = Button(
                 button_frame,
                 image=button_img,
@@ -450,20 +696,14 @@ class GameController:
             )
             btn.image = button_img  # prevent garbage collection
             btn.grid(row=row, column=col, padx=20, pady=20)
-
-            # Keep a reference in the list
-            self.game_images.append(button_img)
-
-            # Move to next row/column in grid
+# Move to next row/column in grid
             col += 1
             if col >= columns:
                 col = 0
                 row += 1
-
-        # Update scroll area to match content size
+# Update scroll area to match content size
         button_frame.update_idletasks()
         canvas.config(scrollregion=canvas.bbox("all"))
-
 # Main start screen of the application
     def open_start_screen(self):
 # Clear previous screen
@@ -566,8 +806,6 @@ class GameController:
             command=self.root.quit
         )
         btn_exit.pack(pady=10)
-
-
 # Starts Tkinter event loop
     def run(self):
         self.root.mainloop()
