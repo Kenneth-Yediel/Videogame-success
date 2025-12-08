@@ -16,7 +16,7 @@ from tkinter import *
 from PIL import Image, ImageTk
 # Create a controller class for the GUI
 class GameController:
-    def _init_(self, root):
+    def __init__(self, root):
 # Link controller to root window and create view
         self.root = root
         self.view = GameView(root)

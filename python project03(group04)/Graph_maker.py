@@ -422,8 +422,8 @@ def draw_genre_company_chart(fig, df):
         ax2.axis('off')
     fig.tight_layout(rect=[0, 0.03, 1, 0.95])
 class GraphWindow(tk.Toplevel):
-    def _init_(self, master=None, G=None, df=None):
-        super()._init_(master)
+    def __init__(self, master=None, G=None, df=None):
+        super().__init__(master)
         self.title("GOTY Analysis Dashboard")
         self.geometry("1200x800")
         self.configure(bg="#1a1a2e")
