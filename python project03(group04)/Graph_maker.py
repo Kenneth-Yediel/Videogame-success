@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import seaborn as sns
-import networkx as nx  # NetworkX imported at the top
+import networkx as nx
 import tkinter as tk
 from tkinter import *
 import warnings
@@ -46,7 +46,7 @@ def load_goty_csv(path="GOTY(2005-2023).csv"):
         df["GOTY_Status"] = df["GOTY_Status"].fillna("Other")
     if "Genre" not in df.columns:
         df["Genre"] = "Unknown"
-    # ADD YEAR if not present (important for predictions)
+    # Add year for predictions
     if "Year" not in df.columns:
         df["Year"] = 2020  # Default value
     if "Company" not in df.columns:
@@ -77,7 +77,7 @@ def build_similarity_graph_from_df(df):
             a.get("revenue", np.nan)
         ])
     mat = np.array(mat, float)
-    # Minimun and maximum normalization
+    # Minimum and maximum normalization
     with np.errstate(invalid="ignore"):
         mn = np.nanmin(mat, axis=0)
         mx = np.nanmax(mat, axis=0)
@@ -93,12 +93,12 @@ def build_similarity_graph_from_df(df):
             vj = np.where(np.isnan(norm[j]), col_mean, norm[j])
             dist = np.linalg.norm(vi - vj)
             sim = 1 / (1 + dist)
-            # Filter small similarities
+            # Filter small similarities in this little line
             if sim > 0.05:
                 G.add_edge(nodes[i], nodes[j], weight=sim)
     return G
 def draw_networkx_winners_analysis(fig, df):
-    """ACTUAL NetworkX visualization - clean and meaningful"""
+    """NetworkX visualization - clean and meaningful"""
     fig.clf()
     ax = fig.add_subplot(111)
     # Create NetworkX graph
@@ -117,7 +117,7 @@ def draw_networkx_winners_analysis(fig, df):
                    copies=row.get('Copies_sold', 0),
                    genre=row.get('Genre', 'Unknown'),
                    year=row.get('Year', 2020))
-    # Connect winners with similar ratings (within 3 points)
+    # Here we connect winners with similar ratings (within 3 points)
     nodes = list(G.nodes())
     for i in range(len(nodes)):
         for j in range(i + 1, len(nodes)):
@@ -146,7 +146,7 @@ def draw_networkx_winners_analysis(fig, df):
                                alpha=0.4,
                                edge_color='gray',
                                style='solid')
-    # Create labels (shorten long names)
+    # Create labels (also shorten long names)
     labels = {}
     for node in G.nodes():
         if len(node) > 12:
@@ -224,7 +224,7 @@ def draw_prediction_dashboard(fig, df):
     ax1.axvline(x=85, color='red', linestyle='--', alpha=0.5, linewidth=1)
     ax1.text(85.5, ax1.get_ylim()[1] * 0.9, '85+ rating\nthreshold',
              fontsize=8, color='red', va='top')
-    # ADD NETWORKX INFO to scatter plot
+    # Adds Networkx info to scatter plot
     if not winners.empty:
         # Create simple NetworkX graph of winners for analysis
         G_winners = nx.Graph()
@@ -422,8 +422,8 @@ def draw_genre_company_chart(fig, df):
         ax2.axis('off')
     fig.tight_layout(rect=[0, 0.03, 1, 0.95])
 class GraphWindow(tk.Toplevel):
-    def __init__(self, master=None, G=None, df=None):
-        super().__init__(master)
+    def _init_(self, master=None, G=None, df=None):
+        super()._init_(master)
         self.title("GOTY Analysis Dashboard")
         self.geometry("1200x800")
         self.configure(bg="#1a1a2e")
@@ -435,7 +435,7 @@ class GraphWindow(tk.Toplevel):
         # Header
         header = Frame(self, bg="#2d2d44", height=60)
         header.pack(fill="x", padx=10, pady=5)
-        Label(header, text="🎮 GOTY Prediction Analytics",
+        Label(header, text=" GOTY Prediction Analytics",
               font=("Arial", 16, "bold"), bg="#2d2d44", fg="white").pack(side="left", padx=20, pady=10)
         # Main content
         main_frame = Frame(self, bg="#1a1a2e")
@@ -445,13 +445,13 @@ class GraphWindow(tk.Toplevel):
         left_panel.pack(side="left", fill="y", padx=(0, 10))
         Label(left_panel, text="Select View:", font=("Arial", 12, "bold"),
               bg="#2d2d44", fg="white").pack(pady=15)
-        # View buttons - ADDED NETWORKX VIEW
+        # View buttons
         self.view_var = tk.StringVar(value="dashboard")
         views = [
-            ("📊 Prediction Dashboard", "dashboard"),
-            ("📈 Yearly Trends", "yearly"),
-            ("🎮 Genre & Company", "genre_company"),
-            ("🌐 Winners Network", "networkx"),  # NEW: NetworkX view
+            ("Prediction Dashboard", "dashboard"),
+            ("Yearly Trends", "yearly"),
+            ("Genre & Company", "genre_company"),
+            ("Winners Network", "networkx"),
         ]
         for text, value in views:
             btn = Radiobutton(

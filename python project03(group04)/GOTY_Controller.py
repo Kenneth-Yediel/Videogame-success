@@ -1,6 +1,6 @@
 # Controller.py - Handles events and connects View with Model
 import csv
-import datetime
+from datetime import datetime
 import shutil
 from tkinter import filedialog, messagebox
 import numpy as np
@@ -16,7 +16,7 @@ from tkinter import *
 from PIL import Image, ImageTk
 # Create a controller class for the GUI
 class GameController:
-    def __init__(self, root):
+    def _init_(self, root):
 # Link controller to root window and create view
         self.root = root
         self.view = GameView(root)
@@ -360,8 +360,25 @@ class GameController:
 # Get values from inputs
             game_name = self.game_name_entry.get()
             ratings = self.ratings_slider.get()
-            copies_sold = float(self.copies_entry.get())
-            revenue = float(self.revenue_entry.get())
+            # Get and validate numeric inputs safely fields
+            copies_text = self.copies_entry.get().strip().replace(",", "")
+            revenue_text = self.revenue_entry.get().strip().replace(",", "")
+            if copies_text == "":
+                messagebox.showerror("Input Error", "Copies Sold field is empty.")
+                return
+            if revenue_text == "":
+                messagebox.showerror("Input Error", "Revenue field is empty.")
+                return
+            try:
+                copies_sold = float(copies_text)
+            except:
+                messagebox.showerror("Input Error", "Copies Sold must be a valid number.")
+                return
+            try:
+                revenue = float(revenue_text)
+            except:
+                messagebox.showerror("Input Error", "Revenue must be a valid number.")
+                return
             narrative = self.narrative_slider.get()
             innovation = self.innovation_slider.get()
             art_direction = self.art_slider.get()
@@ -410,7 +427,7 @@ class GameController:
 # Add genre encoding
             prediction = self.ml_model.predict(allFeatures)
 # Map prediction to readable result
-            prediction_map = {2: "🏆 WINNER", 1: "⭐ NOMINEE", 0: "❌ NOT NOMINATED"}
+            prediction_map = {2: "WINNER", 1: "NOMINEE", 0: "NOT NOMINATED"}
             result_text = prediction_map.get(prediction, "Unknown")
 # Create result message
             if self.current_uploaded_image:
@@ -451,40 +468,40 @@ class GameController:
                     confidence=(prediction / 2) * 100,
                     image=saved_image_path
                 )
-        except ValueError as e:
-            messagebox.showerror("Input Error", "Please enter valid numbers for all fields.")
+        except Exception as e:
+            messagebox.showerror("Prediction Error", f"An error occurred: {str(e)}")
+
         except Exception as e:
             messagebox.showerror("Prediction Error", f"An error occurred: {str(e)}")
 # Save the prediction on a csv file
     def savePredictionToCSV(self, game_name, ratings, copies_sold, revenue, narrative,
                             innovation, art_direction, genre, prediction, confidence, image=None):
         filename = "Prediction_History.csv"
-# Check if file exists to write headers
+        # Check if file exists to write headers
         file_exists = os.path.isfile(filename)
         with open(filename, 'a', newline='') as f:
             writer = csv.writer(f)
-# Write header if new file
+            # Write header if new file
             if not file_exists:
                 writer.writerow([
-                     'game_name', 'ratings', 'copies_sold',
+                    'game_name', 'ratings', 'copies_sold',
                     'revenue', 'narrative', 'innovation', 'art_direction',
                     'genre', 'prediction', 'confidence', 'image'
                 ])
-# Write prediction data
-                writer.writerow([
-                    game_name,
-                    ratings,
-                    copies_sold,
-                    revenue,
-                    narrative,
-                    innovation,
-                    art_direction,
-                    genre,
-                    prediction,
-                    f"{confidence:.1f}",
-                    image if image else "No image"
-                ])
-# Method for saving user game image
+            writer.writerow([
+                game_name,
+                ratings,
+                copies_sold,
+                revenue,
+                narrative,
+                innovation,
+                art_direction,
+                genre,
+                prediction,
+                f"{confidence:.1f}",
+                image if image else "No image"
+            ])
+    # Method for saving user game image
     def saveGameImage(self, image_path, game_name):
         """Save uploaded game image to Saved_game_images folder"""
         try:
@@ -538,10 +555,103 @@ class GameController:
                            bg="#2196F3", fg="white", width=15,
                            command=result_window.destroy)
         close_btn.pack(pady=20)
+# Placeholder functions for all predictions screens (to be implemented)
     def open_all_predictions(self):
-# This will show predictions for all games
+        self.view.clear_screen()
+        self.view.create_background("Back_ground_and_other_stuff/YES.png")
         print("Opening All Predictions...")
-        # TODO: Implement all predictions display
+        # Back button to Predictor Menu
+        back_btn = Button(self.root, text="← Back to Predictor Menu", font=("Arial", 12),
+                          bg="#666666", fg="white", command=self.open_predictor_screen)
+        back_btn.place(relx=0.95, rely=0.02, anchor="ne")
+# Title
+        title_label = Label(self.root, text="ALL PREDICTIONS",
+                            font=("Arial", 32, "bold"), bg="#555555", fg="white")
+        title_label.pack(pady=20)
+# Main container (left & right)
+        main_container = Frame(self.root, bg="#555555")
+        main_container.pack(pady=10)
+# LEFT SIDE – NOMINEES
+        left_side = Frame(main_container, bg="#555555")
+        left_side.pack(side=LEFT, padx=40)
+        Label(left_side, text="NOMINEES", font=("Arial", 24, "bold"),
+              bg="#555555", fg="gold").pack()
+        left_scroll_container = Frame(left_side, bg="#555555")
+        left_scroll_container.pack(pady=10)
+        left_canvas = Canvas(left_scroll_container, width=450, height=600,
+                             bg="#353E43", highlightthickness=0)
+        left_canvas.pack(side=LEFT)
+        left_slider = Scale(left_scroll_container, from_=0, to=500,
+                            orient=VERTICAL, bg="#222222", fg="white", length=600)
+        left_slider.pack(side=RIGHT, padx=10)
+        left_frame = Frame(left_canvas, bg="#252525")
+        left_canvas.create_window((0, 0), window=left_frame, anchor="nw")
+        def update_left_scroll(pos):
+            left_canvas.yview_moveto(int(pos) / 1000)
+        left_slider.config(command=update_left_scroll)
+# RIGHT SIDE – NOT NOMINATED
+        right_side = Frame(main_container, bg="#555555")
+        right_side.pack(side=RIGHT, padx=40)
+        Label(right_side, text="NOT NOMINATED", font=("Arial", 24, "bold"),
+              bg="#555555", fg="white").pack()
+        right_scroll_container = Frame(right_side, bg="#555555")
+        right_scroll_container.pack(pady=10)
+        right_canvas = Canvas(right_scroll_container, width=450, height=600,
+                              bg="#353E43", highlightthickness=0)
+        right_canvas.pack(side=LEFT)
+        right_slider = Scale(right_scroll_container, from_=0, to=500,
+                             orient=VERTICAL, bg="#222222", fg="white", length=600)
+        right_slider.pack(side=RIGHT, padx=10)
+        right_frame = Frame(right_canvas, bg="#252525")
+        right_canvas.create_window((0, 0), window=right_frame, anchor="nw")
+        def update_right_scroll(pos):
+            right_canvas.yview_moveto(int(pos) / 1000)
+        right_slider.config(command=update_right_scroll)
+# csv loader
+        predictions = []
+        if os.path.isfile("Prediction_History.csv"):
+            with open("Prediction_History.csv", "r", newline='', encoding='utf-8') as f:
+                reader = csv.DictReader(f)
+                for row in reader:
+                    predictions.append(row)
+# Keep references to images so Tkinter doesn't garbage collect them and delets my hard work
+        self.image_refs_all_predictions = []
+# sort to left or right frame
+        for row in predictions:
+            game_name = row["game_name"]
+            prediction = row["prediction"]
+            img_path = row["image"]
+# Left = NOMINEE, Right = WINNER + NOT NOMINATED
+            target = left_frame if "NOMINEE" in prediction else right_frame
+# Container for each game
+            box = Frame(target, bg="#353E43", padx=10, pady=10)
+            box.pack(pady=10)
+# Prediction status color
+            color = "#4CAF50" if "WINNER" in prediction else \
+                "#FF9800" if "NOMINEE" in prediction else "#F44336"
+            Label(box, text=prediction, font=("Arial", 14, "bold"),
+                  bg=color, fg="white", width=20).pack()
+# Load game image
+            try:
+                original = Image.open(img_path)
+                resized = original.resize((200, 120))
+                tk_img = ImageTk.PhotoImage(resized)
+            except:
+                placeholder = Image.new("RGB", (200, 120), color="gray")
+                tk_img = ImageTk.PhotoImage(placeholder)
+# Keep reference so image doesn't disappear
+            self.image_refs_all_predictions.append(tk_img)
+            Label(box, image=tk_img, bg="#353E43").pack(pady=5)
+            Label(box, text=game_name, font=("Arial", 14),
+                  bg="#353E43", fg="white").pack()
+# Update scroll region for BOTH sides
+        left_frame.update_idletasks()
+        right_frame.update_idletasks()
+        left_canvas.config(scrollregion=left_canvas.bbox("all"))
+        right_canvas.config(scrollregion=right_canvas.bbox("all"))
+        left_canvas.config(scrollregion=left_canvas.bbox("all"))
+        right_canvas.config(scrollregion=right_canvas.bbox("all"))
+# Placeholder functions for graphs screens (to be implemented)
     def open_graphs_screen(self):
 # This will show data visualizations
         try:
